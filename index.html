@@ -45,15 +45,16 @@ sudo apt install pyshell   # example</code></pre>
             </tbody>
         </table>
 
-        <h2>Index of /pool</h2>
-        <div class="search-box">
-            <input type="search" id="poolSearch" placeholder="Filter by letter (a, d, l, p)..." aria-label="Filter pool letters">
-            <span class="count" id="poolCount">4 letters</span>
-            <button class="badge" id="poolClear" type="button" style="cursor:pointer;">Clear</button>
-        </div>
-        <table class="index" id="poolTable">
-            <thead><tr><th>Name</th></tr></thead>
-            <tbody>
+        <h2>Index of /pool <button class="badge" id="poolToggle" type="button" style="cursor:pointer; margin-left:0.5rem; font-size:0.8rem;">View all 26 letters ▼</button></h2>
+        <div id="poolContainer" style="display:none;">
+            <div class="search-box">
+                <input type="search" id="poolSearch" placeholder="Filter by letter (a, d, l, p)..." aria-label="Filter pool letters">
+                <span class="count" id="poolCount">26 letters</span>
+                <button class="badge" id="poolClear" type="button" style="cursor:pointer;">Clear</button>
+            </div>
+            <table class="index" id="poolTable">
+                <thead><tr><th>Name</th></tr></thead>
+                <tbody>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/a/a.html">a/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/b/b.html">b/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/c/c.html">c/</a></td></tr>
@@ -81,8 +82,9 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/y/y.html">y/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/z/z.html">z/</a></td></tr>
             </tbody>
-        </table>
-        <p id="poolNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No letters found for "<span id="poolQuery"></span>".</p>
+            </table>
+            <p id="poolNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No letters found for "<span id="poolQuery"></span>".</p>
+        </div>
 
         <h2>Packages in pool</h2>
         <div class="search-box">
@@ -169,6 +171,8 @@ sudo apt install pyshell   # example</code></pre>
         const tbl=document.getElementById('poolTable');
         const no=document.getElementById('poolNoResults');
         const qSpan=document.getElementById('poolQuery');
+        const toggle=document.getElementById('poolToggle');
+        const container=document.getElementById('poolContainer');
         if(!q||!tbl) return;
         const rows=[...tbl.tBodies[0].rows];
         function filter(){
@@ -191,6 +195,14 @@ sudo apt install pyshell   # example</code></pre>
         q.addEventListener('input', filter);
         clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
         filter();
+        if(toggle && container){
+            toggle.addEventListener('click', ()=>{
+                const hidden = container.style.display==='none';
+                container.style.display = hidden ? 'block' : 'none';
+                toggle.textContent = hidden ? 'Hide letters ▲' : 'View all 26 letters ▼';
+                if(hidden) q.focus();
+            });
+        }
     })();
     </script>
 </body>
