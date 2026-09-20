@@ -11,39 +11,6 @@ Size: 768
 MD5sum: 78e99d98181c3bd4fb5fad503b587151
 SHA256: 3eb67f3e956e7a40e3cf023cdc7a97706c04d39d284b7e774815a5d18457197e
 
-Package: DebAppBuilder
-Version: 1.5-release
-Architecture: amd64
-Maintainer: tuffgit21 (Youssef)
-Depends: python3, python3-tk
-Description: Build .deb apps with ease!
-Filename: pool/main/d/debappbuilder/DebAppBuilder_1.5-release_amd64.deb
-Size: 859648
-MD5sum: f8c8a88052b847168b191283a98ad36f
-SHA256: b9d3de53dee211e11d502b0bc49eb3b56cd357f1bff7bbb927e51801cb7a6f9e
-
-Package: debappbuilder
-Version: 2.0
-Architecture: amd64
-Maintainer: tuffgit21
-Depends: python3, python3-tk, dpkg-dev
-Description: Build .deb apps with ease!
-Filename: pool/main/d/debappbuilder/DebAppBuilder_2.0_amd64.deb
-Size: 751256
-MD5sum: 77d422bd293185d25ae28d6ce6096454
-SHA256: 96496333f87f4f9a623eb477df2b8f3afaa6863dc8550bcf7a30ea08600008f7
-
-Package: debappbuilder
-Version: 2.4
-Architecture: amd64
-Maintainer: tuffgit21
-Depends: python3, python3-tk, dpkg-dev
-Description: Build .deb apps with ease!
-Filename: pool/main/d/debappbuilder/debian-app-builder_2.4_amd64.deb
-Size: 1040448
-MD5sum: 5ef20a2e1577996509a317188eaaf2fb
-SHA256: 64b431d5e5080486c6c9057c3f88c3af9be1964c1c8ef142805da6c9ad580aee
-
 Package: debian-app-builder
 Version: 3.0
 Architecture: amd64
