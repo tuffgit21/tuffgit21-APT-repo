@@ -46,15 +46,21 @@ sudo apt install pyshell   # example</code></pre>
         </table>
 
         <h2>Index of /pool</h2>
-        <table class="index">
-            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+        <div class="search-box">
+            <input type="search" id="poolSearch" placeholder="Filter by letter (a, d, l, p)..." aria-label="Filter pool letters">
+            <span class="count" id="poolCount">4 letters</span>
+            <button class="badge" id="poolClear" type="button" style="cursor:pointer;">Clear</button>
+        </div>
+        <table class="index" id="poolTable">
+            <thead><tr><th>Name</th></tr></thead>
             <tbody>
-                <tr><td><span class="icon">📁</span><a href="./pool/main/a/a.html">a/</a></td><td>-</td><td class="size">-</td><td>autotest (1.0)</td></tr>
-                <tr><td><span class="icon">📁</span><a href="./pool/main/d/d.html">d/</a></td><td>-</td><td class="size">-</td><td>DebAppBuilder (1.5, 2.0, 2.4)</td></tr>
-                <tr><td><span class="icon">📁</span><a href="./pool/main/l/l.html">l/</a></td><td>-</td><td class="size">-</td><td>LightCalc (2.0-release)</td></tr>
-                <tr><td><span class="icon">📁</span><a href="./pool/main/p/p.html">p/</a></td><td>-</td><td class="size">-</td><td>package, passgencli, passgengui, pyshell</td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/a/a.html">a/</a></td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/d/d.html">d/</a></td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/l/l.html">l/</a></td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/p/p.html">p/</a></td></tr>
             </tbody>
         </table>
+        <p id="poolNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No letters found for "<span id="poolQuery"></span>".</p>
 
         <h2>Packages in pool</h2>
         <div class="search-box">
@@ -79,7 +85,7 @@ sudo apt install pyshell   # example</code></pre>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
 
         <div class="footer">
-            tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages · Apache/Debian style index · <span class="muted">Light / Dark auto + toggle</span>
+            tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages
         </div>
     </div>
     <script>
@@ -134,6 +140,36 @@ sudo apt install pyshell   # example</code></pre>
         // deep-link ?q=
         const u=new URLSearchParams(location.search);
         if(u.get('q')){ q.value=u.get('q'); filter(); }
+        filter();
+    })();
+    (function(){
+        const q=document.getElementById('poolSearch');
+        const c=document.getElementById('poolCount');
+        const clear=document.getElementById('poolClear');
+        const tbl=document.getElementById('poolTable');
+        const no=document.getElementById('poolNoResults');
+        const qSpan=document.getElementById('poolQuery');
+        if(!q||!tbl) return;
+        const rows=[...tbl.tBodies[0].rows];
+        function filter(){
+            const s=q.value.trim().toLowerCase();
+            let vis=0;
+            rows.forEach(r=>{
+                const txt=r.textContent.toLowerCase().replace('/','').trim();
+                const ok=!s || txt.includes(s);
+                r.style.display=ok?'':'none';
+                if(ok) vis++;
+            });
+            c.textContent = vis + ' / ' + rows.length + ' letters' + (s ? ' for "'+q.value+'"' : '');
+            const empty = s && vis===0;
+            tbl.style.display = empty ? 'none' : '';
+            if(no){
+                no.style.display = empty ? 'block' : 'none';
+                if(qSpan) qSpan.textContent = q.value;
+            }
+        }
+        q.addEventListener('input', filter);
+        clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
         filter();
     })();
     </script>
