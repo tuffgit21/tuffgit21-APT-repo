@@ -12,9 +12,23 @@
     --table-head: #f8f8f8;
     --table-hover: #f6f8ff;
     --code-text: #333;
+    --scrollbar-track: #f1f1f1;
+    --scrollbar-thumb: #c1c1c1;
+    --scrollbar-thumb-hover: #a8a8a8;
 }
 * { box-sizing: border-box; }
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    color-scheme: light;
+}
 html, body { margin: 0; padding: 0; }
+/* WebKit scrollbar - light */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 999px; border: 2px solid var(--scrollbar-track); }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+::-webkit-scrollbar-corner { background: var(--scrollbar-track); }
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     background: var(--bg);
@@ -163,6 +177,10 @@ table.index td.size, table.index th.size { text-align: right; white-space: nowra
         --link: #8ab4f8;
         --debian-red: #c0003a;
         --debian-red-dark: #90002b;
+        --scrollbar-track: #1a1d21;
+        --scrollbar-thumb: #3a3f47;
+        --scrollbar-thumb-hover: #4a505c;
+        color-scheme: dark;
     }
 }
 :root[data-theme="dark"] {
@@ -178,4 +196,9 @@ table.index td.size, table.index th.size { text-align: right; white-space: nowra
     --link: #8ab4f8;
     --debian-red: #c0003a;
     --debian-red-dark: #90002b;
+    --scrollbar-track: #1a1d21;
+    --scrollbar-thumb: #3a3f47;
+    --scrollbar-thumb-hover: #4a505c;
+    color-scheme: dark;
 }
+:root[data-theme="light"] { color-scheme: light; }
