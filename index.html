@@ -76,6 +76,7 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><code>pyshell</code></td><td>1.0.0</td><td>all</td><td><a href="./pool/main/p/pyshell/pyshell_1.0.0_all.deb">pyshell_1.0.0_all.deb</a> <span class="muted">125.2K</span></td></tr>
             </tbody>
         </table>
+        <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
 
         <div class="footer">
             tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages · Apache/Debian style index · <span class="muted">Light / Dark auto + toggle</span>
@@ -107,6 +108,8 @@ sudo apt install pyshell   # example</code></pre>
         const c=document.getElementById('pkgCount');
         const clear=document.getElementById('pkgClear');
         const tbl=document.getElementById('pkgTable');
+        const no=document.getElementById('pkgNoResults');
+        const qSpan=document.getElementById('pkgQuery');
         if(!q||!tbl) return;
         const rows=[...tbl.tBodies[0].rows];
         function filter(){
@@ -119,6 +122,12 @@ sudo apt install pyshell   # example</code></pre>
                 if(ok) vis++;
             });
             c.textContent = vis + ' / ' + rows.length + ' packages' + (s ? ' for "'+q.value+'"' : '');
+            const empty = s && vis===0;
+            tbl.style.display = empty ? 'none' : '';
+            if(no){
+                no.style.display = empty ? 'block' : 'none';
+                if(qSpan) qSpan.textContent = q.value;
+            }
         }
         q.addEventListener('input', filter);
         clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
