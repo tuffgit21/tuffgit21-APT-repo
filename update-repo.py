@@ -311,7 +311,7 @@ def update_html(debs):
         <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
-                <tr><td><span class="icon">\u2b06\uFE0F</span><a href="../">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
+                <tr><td><span class="icon">\u2b06\uFE0F</span><a href="../../../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
 {rows_str}
             </tbody>
         </table></div>{empty_marker}
