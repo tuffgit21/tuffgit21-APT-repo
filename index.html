@@ -23,7 +23,7 @@ sudo apt install pyshell   # example</code></pre>
         <p class="muted">Unsigned fallback: <code>deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main</code> · <a href="./public.key">public.key</a> · <a href="./tuffgit21.gpg">tuffgit21.gpg</a> · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">GitHub</a></p>
 
         <h2>Index of /</h2>
-        <table class="index">
+        <div class="table-wrap"><table class="index">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">📁</span><a href="./dists/">dists/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Release, InRelease, Packages</td></tr>
@@ -31,10 +31,10 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><span class="icon">🔑</span><a href="./public.key">public.key</a></td><td>2026-09-20 15:54</td><td class="size">3.9K</td><td>ASCII armored public key</td></tr>
                 <tr><td><span class="icon">🔑</span><a href="./tuffgit21.gpg">tuffgit21.gpg</a></td><td>2026-09-20 15:54</td><td class="size">2.8K</td><td>dearmored keyring</td></tr>
             </tbody>
-        </table>
+        </table></div>
 
         <h2>Index of /dists/stable</h2>
-        <table class="index">
+        <div class="table-wrap"><table class="index">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">📄</span><a href="./dists/stable/Release">Release</a></td><td>2026-09-20 16:03</td><td class="size">713 B</td><td>Checksums</td></tr>
@@ -43,7 +43,7 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td><td>2026-09-20 16:03</td><td class="size">3.2K</td><td>amd64/all index</td></tr>
                 <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>2026-09-20 16:03</td><td class="size">1.2K</td><td>Compressed index</td></tr>
             </tbody>
-        </table>
+        </table></div>
 
         <h2>Index of /pool <button class="badge" id="poolToggle" type="button" style="cursor:pointer; margin-left:0.5rem; font-size:0.8rem;">View all 26 letters ▼</button></h2>
         <div id="poolContainer" style="display:none;">
@@ -52,7 +52,7 @@ sudo apt install pyshell   # example</code></pre>
                 <span class="count" id="poolCount">26 letters</span>
                 <button class="badge" id="poolClear" type="button" style="cursor:pointer;">Clear</button>
             </div>
-            <table class="index" id="poolTable">
+            <div class="table-wrap"><table class="index" id="poolTable">
                 <thead><tr><th>Name</th></tr></thead>
                 <tbody>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/a/a.html">a/</a></td></tr>
@@ -82,7 +82,7 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/y/y.html">y/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/z/z.html">z/</a></td></tr>
             </tbody>
-            </table>
+            </table></div>
             <p id="poolNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No letters found for "<span id="poolQuery"></span>".</p>
         </div>
 
@@ -92,7 +92,7 @@ sudo apt install pyshell   # example</code></pre>
             <span class="count" id="pkgCount">9 packages</span>
             <button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button>
         </div>
-        <table class="index" id="pkgTable">
+        <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
             <tbody>
                 <tr><td><code>debian-app-builder</code></td><td>3.0</td><td>amd64</td><td><a href="./pool/main/d/debappbuilder/debian-app-builder_3.0_amd64.deb">debian-app-builder_3.0_amd64.deb</a> <span class="muted">822.7K</span></td></tr>
@@ -101,7 +101,7 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><code>passgengui</code></td><td>1.8</td><td>all</td><td><a href="./pool/main/p/passgengui/passgengui.deb">passgengui.deb</a> <span class="muted">2.6K</span></td></tr>
                 <tr><td><code>pyshell</code></td><td>1.0.0</td><td>all</td><td><a href="./pool/main/p/pyshell/pyshell_1.0.0_all.deb">pyshell_1.0.0_all.deb</a> <span class="muted">125.2K</span></td></tr>
             </tbody>
-        </table>
+        </table></div>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
 
         <div class="footer">

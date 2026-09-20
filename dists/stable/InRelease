@@ -9,29 +9,29 @@ Version: 1.0
 Architectures: amd64 all
 Components: main
 Description: tuffgit21's APT repository
-Date: Sun, 20 Sep 2026 13:41:40 UTC
+Date: Sun, 20 Sep 2026 13:55:16 UTC
 MD5Sum:
  f194c28554bb6483c612146fca36ebd4 1897 main/binary-amd64/Packages
- c7d6a30569b6b9f767f0ec08c36cd85f 856 main/binary-amd64/Packages.gz
+ 799521da40695275a037128606d6f67d 856 main/binary-amd64/Packages.gz
 SHA1:
  55444a153b4b2762e570a49c7b987b99b3937674 1897 main/binary-amd64/Packages
- facdf734a59a85e4ec73b175ba92f6248e08604b 856 main/binary-amd64/Packages.gz
+ 76b2e48f94e56e44a3be6afe8e772feb9821b350 856 main/binary-amd64/Packages.gz
 SHA256:
  bd5777d04316066c23ebee15742a2f0234d02da5879997f749ee6e3fd8ea0189 1897 main/binary-amd64/Packages
- e9e55b4f5d19be9ee08e7c96c59bdfa0d2e9c358dbfef39bc723e3f247a8a934 856 main/binary-amd64/Packages.gz
+ bd7f5fe141a731b7f99002837f5f04001a0f5dbc817d23a7f18794eb1d5da586 856 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqv4pUACgkQEt1LWjHi
-/+BQVRAAsOLY3yOQP/iuST6dPnIx4ISO+4JOl1PYCsSXzcqbowjkC6d/YC6YsxDZ
-XDpM3UqoI13Wcq0AzcjgKtgjZmqXmwHTyzyu8kqq7qvm7aPF9e0qdv0SkUAxp/cZ
-yB0ohuPudJKIrcND1GLnk+8i8ucuQVulp1MquB6SfMrKDBaYy2XkClLb0u2KSjD+
-GoEBBhZ2BdLOk3/6wl1eKNv7j22OW5UqDasw04/0NU78Vc7Y3/3h+xso7hCby9Ne
-L9IyJ/kEUXOjhbmawDaqHUldt03EI1ExdSorSG5XbdhjlL4xtF6osF+/4dTqTk6A
-y0X79gspamvAgozZtk0mLxtwSzeHn+Cz6zeGrUqyQ2fcYpb4vcLHAU+hP00K2fp+
-U20PAVT8A6yoahn07lT2phn6hls3DLA7vskCh+Gq1PmthCF5h8gFMghs9d6xT17Q
-W8R4BNjlTQgZy9FFEgsd/DORevvJWSXbyy2kLzb9FgCcJaOB9oZOE/N52BRqMcRw
-LBInbLieQ40yLo7lWqndxMTTOiJSapBVMaLjeqqVTEwbgo2MjewRK0ZrWlQVtPz6
-E8ix3GG8HL49NMj4S2v3ZCE4qR5A0JVTI/fOzdKe6aSru478yjRYDaU5F8e2eJuL
-T1w+ZzgBO6vhEa9y4qqWP3PpyBDY/BZiqVjV55v67mC32ThYOF8=
-=zn6J
+iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqv5cYACgkQEt1LWjHi
+/+DKCw//TDPft10SJLbsG7lnJxor4eo0bII9Pjdre+nNHEDK7B2XJICGwlC2DbBE
+3Jp7W9yEsP2V8k+9m66KWp3Ppb2c7j82vNK5XNpHbHRgkwQDyobr/BLVLaHAf6oi
+PDAc32qdGYA28EEJSM6oQUGb1D/bwSRjCk3EWSkqgKw/I76OZwYz3LhdpbITQVhU
+FSItPxu5nK0xarYNiVG2CJGFd4/rllFZEurJz8aRETnbme/0vdTkB7LfNbn19Mz2
+rB9urZOFQUF7oTdPlppM86zmFUzOyf6xmTbFQ8a+KHLDajnagZwNtyf+XR/4fqRT
+6tn9/QrTV+2nslK3rTv8R4GaDlSb9lta5b75609cp1npDVt4Lu3sYw3HevnjingV
+C5unv0oT7Qm1S31Tdb88pNsIFN/0vYktTxiEXyfVzNkdUcDkWJQYE4jq+hEQLO6/
+XabyC4yJHYGvqFpc8TMmPz5NO344A275hF5OhJun0UeF2ZkjgNm6fI4SgxoOJyKw
+vrVdGLAUWoL4J3flN7b/9sdWB2c+hlALiY+L0+2DetS+9Nl3+qQ+oIz3Re545Fx5
+Wu/RWf871SmoBaGY70z8god3+L7kTynuikhoDQme17diDmJnuyduNHVBZ7vglRU1
+ZSV4ElqB5p13L/B+wyALRXtavLftG67nSKKpYIEuUWcHtA40Kv0=
+=RiU+
 -----END PGP SIGNATURE-----

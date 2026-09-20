@@ -14,15 +14,13 @@
     </header>
     <div class="container">
         <div class="search-box"><input type="search" id="pkgSearch" placeholder="Filter..." aria-label="Filter"><span class="count" id="pkgCount"></span><button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button></div>
-        <table class="index" id="pkgTable">
+        <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">⬆️</span><a href="../">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
                 <tr><td><span class="icon">📦</span><a href="lightcalc/LightCalc_2.0-release_amd64.deb" download>LightCalc_2.0-release_amd64.deb</a></td><td>2026-08-23 16:35</td><td class="size">581.6K</td><td>LightCalc 2.0-release (amd64)</td></tr>
-            
-                <tr><td><span class="icon">📦</span><a href="lightcalc/LightCalc_2.0-release_amd64.deb" download>LightCalc_2.0-release_amd64.deb</a></td><td>2026-08-23 16:35</td><td class="size">581.6K</td><td>LightCalc 2.0-release (amd64)</td></tr>
-            
-        </table>
+            </tbody>
+        </table></div>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
     </div>
     <script>
@@ -61,7 +59,7 @@
                 r.style.display=ok?'':'none';
                 if(ok) vis++;
             });
-            c.textContent=vis+' / '+rows.length+' packages'+(s?' for "'+q.value+'"':'');
+            if(c) c.textContent=vis+' / '+rows.length+' packages'+(s?' for "'+q.value+'"':'');
             const no=document.getElementById('pkgNoResults');
             const qSpan=document.getElementById('pkgQuery');
             const empty=s && vis===0;
@@ -69,7 +67,7 @@
             if(no){ no.style.display=empty?'block':'none'; if(qSpan) qSpan.textContent=q.value; }
         }
         q.addEventListener('input',filter);
-        clear.addEventListener('click',()=>{q.value='';filter();q.focus();});
+        if(clear) clear.addEventListener('click',()=>{q.value='';filter();q.focus();});
         filter();
     })();
     </script>

@@ -6,13 +6,13 @@ Version: 1.0
 Architectures: amd64 all
 Components: main
 Description: tuffgit21's APT repository
-Date: Sun, 20 Sep 2026 13:41:40 UTC
+Date: Sun, 20 Sep 2026 13:55:16 UTC
 MD5Sum:
  f194c28554bb6483c612146fca36ebd4 1897 main/binary-amd64/Packages
- c7d6a30569b6b9f767f0ec08c36cd85f 856 main/binary-amd64/Packages.gz
+ 799521da40695275a037128606d6f67d 856 main/binary-amd64/Packages.gz
 SHA1:
  55444a153b4b2762e570a49c7b987b99b3937674 1897 main/binary-amd64/Packages
- facdf734a59a85e4ec73b175ba92f6248e08604b 856 main/binary-amd64/Packages.gz
+ 76b2e48f94e56e44a3be6afe8e772feb9821b350 856 main/binary-amd64/Packages.gz
 SHA256:
  bd5777d04316066c23ebee15742a2f0234d02da5879997f749ee6e3fd8ea0189 1897 main/binary-amd64/Packages
- e9e55b4f5d19be9ee08e7c96c59bdfa0d2e9c358dbfef39bc723e3f247a8a934 856 main/binary-amd64/Packages.gz
+ bd7f5fe141a731b7f99002837f5f04001a0f5dbc817d23a7f18794eb1d5da586 856 main/binary-amd64/Packages.gz

@@ -14,21 +14,15 @@
     </header>
     <div class="container">
         <div class="search-box"><input type="search" id="pkgSearch" placeholder="Filter..." aria-label="Filter"><span class="count" id="pkgCount"></span><button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button></div>
-        <table class="index" id="pkgTable">
+        <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">⬆️</span><a href="../">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
-                <tr><td><span class="icon">📦</span><a href="package/package_1.0-test_amd64.deb" download>package_1.0-test_amd64.deb</a></td><td>2026-08-21 22:01</td><td class="size">4.1M</td><td>package 1.0-test (amd64)</td></tr>
                 <tr><td><span class="icon">📦</span><a href="passgencli/passgencli.deb" download>passgencli.deb</a></td><td>2026-08-18 22:34</td><td class="size">2.4K</td><td>passgencli 1.8 (all)</td></tr>
                 <tr><td><span class="icon">📦</span><a href="passgengui/passgengui.deb" download>passgengui.deb</a></td><td>2026-08-18 22:19</td><td class="size">2.6K</td><td>passgengui 1.8 (all)</td></tr>
                 <tr><td><span class="icon">📦</span><a href="pyshell/pyshell_1.0.0_all.deb" download>pyshell_1.0.0_all.deb</a></td><td>2026-09-16 17:37</td><td class="size">125.2K</td><td>pyshell 1.0.0 (all)</td></tr>
-            
-                <tr><td><span class="icon">📦</span><a href="package/package_1.0-test_amd64.deb" download>package_1.0-test_amd64.deb</a></td><td>2026-08-21 22:01</td><td class="size">4.1M</td><td>package 1.0-test (amd64)</td></tr>
-                <tr><td><span class="icon">📦</span><a href="passgencli/passgencli.deb" download>passgencli.deb</a></td><td>2026-08-18 22:34</td><td class="size">2.4K</td><td>passgencli 1.8 (all)</td></tr>
-                <tr><td><span class="icon">📦</span><a href="passgengui/passgengui.deb" download>passgengui.deb</a></td><td>2026-08-18 22:19</td><td class="size">2.6K</td><td>passgengui 1.8 (all)</td></tr>
-                <tr><td><span class="icon">📦</span><a href="pyshell/pyshell_1.0.0_all.deb" download>pyshell_1.0.0_all.deb</a></td><td>2026-09-16 17:37</td><td class="size">125.2K</td><td>pyshell 1.0.0 (all)</td></tr>
-            
-        </table>
+            </tbody>
+        </table></div>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
     </div>
     <script>
@@ -67,7 +61,7 @@
                 r.style.display=ok?'':'none';
                 if(ok) vis++;
             });
-            c.textContent=vis+' / '+rows.length+' packages'+(s?' for "'+q.value+'"':'');
+            if(c) c.textContent=vis+' / '+rows.length+' packages'+(s?' for "'+q.value+'"':'');
             const no=document.getElementById('pkgNoResults');
             const qSpan=document.getElementById('pkgQuery');
             const empty=s && vis===0;
@@ -75,7 +69,7 @@
             if(no){ no.style.display=empty?'block':'none'; if(qSpan) qSpan.textContent=q.value; }
         }
         q.addEventListener('input',filter);
-        clear.addEventListener('click',()=>{q.value='';filter();q.focus();});
+        if(clear) clear.addEventListener('click',()=>{q.value='';filter();q.focus();});
         filter();
     })();
     </script>
