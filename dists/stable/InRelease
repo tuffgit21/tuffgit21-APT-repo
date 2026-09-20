@@ -8,30 +8,30 @@ Codename: stable
 Version: 1.0
 Architectures: amd64 all
 Components: main
-Description: tuffgit21 APT repository
-Date: Sun, 20 Sep 2026 12:34:44 UTC
+Description: tuffgit21's APT repository
+Date: Sun, 20 Sep 2026 13:03:49 UTC
 MD5Sum:
- 13a9c4fbc98062b91d4338391dbc9175 2881 main/binary-amd64/Packages
- 88dc01625abab32f8652f71e1bbf84ef 1059 main/binary-amd64/Packages.gz
+ 72d9dacaf67f0db494e008021ae89552 3257 main/binary-amd64/Packages
+ 308d60a7831a33acb596168f96f6f42d 1258 main/binary-amd64/Packages.gz
 SHA1:
- 6167604ecc3151d3ca99a9fed2b5d065126a4bd0 2881 main/binary-amd64/Packages
- 05b25142266d889f712ac6dcd39a34c56ece06dd 1059 main/binary-amd64/Packages.gz
+ 5ddde4ef9e7e25201a3c09ff37d1f7e4e44a9929 3257 main/binary-amd64/Packages
+ 5bf613775946733d713e8d1e98925c406b574796 1258 main/binary-amd64/Packages.gz
 SHA256:
- 5f84f6bd11d860972169fd3a5222ca7408f69584f5e803210c0650ced5b9f0f6 2881 main/binary-amd64/Packages
- d307f977ded2f71b6122330cb2b34cc4f9f005ed8a53f84293e4b3a569f3556c 1059 main/binary-amd64/Packages.gz
+ 76fe84ec9d7de9c1b8f7e870efe9932ef2c5c7e8e4985f8a78ab92e6f6037eed 3257 main/binary-amd64/Packages
+ 197a4110c35f471e9585ff58d962f5322b303dcd38139652040dff50835a4985 1258 main/binary-amd64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqv15QACgkQEt1LWjHi
-/+CJUg/9FefTtNZ6J3Xo/cf8LfM8VXyZvPImaaTptJ7ye32SpvepSN8BCmK6zkCj
-Hch2qexQQTAVFGWC4e/SM6T/fCcAQdsyb9L0K+P7Ycd/elX8Pa1NzjPL+eb7E6ei
-vA9lT1aaTtnRKo+b/Dr6DwlACBwhV2R+J8r/LGoQHIThDyLptWPhgBTS6xCYOuGw
-rXDw4J6i6AFI7pFmxcnFkfH8ucsB6CI1u11Ea0+m4D2QlPCDc9njEmypJrA5DWje
-2d1I+57PKa33kJXWc5+qLmPB9SgEmJiiXTFDATYG34gMIzjK6o5Gtc8RdlZ0Hz77
-N6rxzD9lag0swDUfKlWBJXqfFpjjnJHQzK/KyW/QhoE2VOO7pgmh3Nni9T7Uluqa
-TkYZ09SkorPN++NRH484CsKLlaaM+MAnt0c9CweyAX70ulZF35+visfHoRVW0t/7
-bk3vIs+fmO3dqUtCwMw0o9jCXRVsadm9SyfTW5ijrgDJqrc4wsJAI82uQFqUOxnQ
-ugReplX3HHdZ/geivi3s/H0X1nbWOSmuoOGcnGvC/4es+mjFXg8Uj5bEPH4jKGS+
-qCF+2R1GjQIeLhrrXfK5bcuD4XjQE2pZ0CfXilypMVNU9Z6lFUH1fw7cNW9FrG8h
-8EnhvXOc3/RcMrr/5t9bQsUQTe4U2B0c+FDBjfx32tTJWpwift8=
-=PLhS
+iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqv2bcACgkQEt1LWjHi
+/+AOvBAAqq/wL29k6SyvSabs7HxTfUY73zHLeiKFmqaW4hQws4JVMaB+ev3n5Ql9
+1pg1aMbznZ8HtvhuFejFa6GRxSYIqsXCwniTP/JjvzRhsoMapDGSbTVeRDTqrkkw
+NdVpz/zdrnnOaxsuCzA6ubOLcB3AkP9a7lypsnHiQZAVEcBSTHyV5NmWDmy9RKeP
+gdZ0xg1KGpJhpBSp0lQ7fTiSerIC4CpVgzX/FEqUkcEHcyRWWF3vB0gqamfxoTok
+Si17n8A93BDOebTXr4YVJw3inJUooUIjpaVEzF20IIPM3Eyow/yYj0jA86+ky/F6
+VUqXt45FE1/JhLA6iKRU8jDT4ZtiHYRB/cefDD1OsG1DsM5s2oyu4LW/nsHb5uAA
+qcatgkUEnZYDb1PxDvW+fv11V2/dV7DFBYbhIQsg8c94PKV++IaPhbshQ9RqZiVx
+xKWnaCFzMKE9suLhnRryCVRaaixC1vc9s5sTOtGkJqt/ksC128lqj+R0/XaJP1Sg
+3udSb8szfcEsl97j6E4MTEx6cHbBqBnxhn5lbzCpYUO4Kps+MBvRpV92Oj/vFGTa
+HzS8pNv3HX7NNfZpn7DIOzA3WXp6DaRoFHoEWnf92jcRDI5QxzN08zVYJEmrM6PL
+YzcwYr7KA6iHXN2j75Mn2+iNlyMaeWDgBK6mxHP3JuALcwVDnDk=
+=HiCA
 -----END PGP SIGNATURE-----
