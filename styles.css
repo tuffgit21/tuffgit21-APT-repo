@@ -1,14 +1,106 @@
- a {
-        font-size: 20px;
-        text-decoration: none;
-        color: black;
-        cursor: pointer;
-    }
-    a:hover{
-        text-shadow: 0 0 10px #00ffff;
-        transition: 0.3s ease-in-out
-    }
-    li {
-        font-size: 25px;
-        
-    }
+/* Debian APT repo - Apache autoindex inspired */
+:root {
+    --debian-red: #A80030;
+    --debian-red-dark: #840024;
+    --link: #0035A0;
+    --border: #d9d9d9;
+    --bg: #f6f6f6;
+    --code-bg: #f0f0f0;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: white;
+    color: #222;
+    line-height: 1.5;
+}
+/* header like Debian */
+.site-header {
+    background: var(--debian-red);
+    color: white;
+    border-bottom: 4px solid var(--debian-red-dark);
+    padding: 1rem 1.5rem;
+}
+.site-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+.site-header h1 span { font-weight: 400; opacity: 0.95; }
+.site-header p {
+    margin: 0.3rem 0 0 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 2.5rem;
+}
+h2 {
+    font-size: 1.15rem;
+    color: #111;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.35rem;
+    margin-top: 2rem;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: "Consolas","Liberation Mono",Menlo, monospace; font-size: 0.9em; background: #eee; padding: 1px 4px; border-radius: 3px; }
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+pre code { background: none; padding: 0; }
+.muted { color: #666; font-size: 0.9rem; }
+.badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    background: #e8e8e8;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 6px;
+}
+/* Apache-like directory table */
+table.index {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    margin: 0.5rem 0 1rem;
+}
+table.index th {
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid #aaa;
+    padding: 6px 8px;
+    background: #f8f8f8;
+    white-space: nowrap;
+}
+table.index td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+table.index tr:hover td { background: #f6f8ff; }
+table.index td.size, table.index th.size { text-align: right; white-space: nowrap; }
+.icon { width: 18px; display: inline-block; text-align: center; margin-right: 6px; }
+.footer {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: #666;
+    font-size: 0.85rem;
+}
+.footer a { color: #666; }
+@media (max-width: 600px) {
+    .site-header h1 { font-size: 1.25rem; }
+    table.index th, table.index td { font-size: 0.85rem; }
+    pre { font-size: 0.8rem; }
+}

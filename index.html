@@ -3,46 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tuffgit21 APT Repo</title>
+    <title>Index of /tuffgit21-APT-repo - tuffgit21 APT Repository</title>
     <link rel="stylesheet" href="./styles.css">
-    <style>
-        body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
-        code { background: #eee; padding: 2px 4px; border-radius: 3px; }
-    </style>
 </head>
 <body>
-    <h1>tuffgit21 APT Repository</h1>
-    <p>Debian/Ubuntu repository hosted on GitHub Pages.</p>
+    <header class="site-header">
+        <h1>Debian APT Repository <span>— tuffgit21</span></h1>
+        <p>Stable distribution · Component main · Architectures amd64, all · https://tuffgit21.github.io/tuffgit21-APT-repo</p>
+    </header>
 
-    <h2>Quick setup (signed, recommended)</h2>
-    <pre><code>curl -fsSL https://tuffgit21.github.io/tuffgit21-APT-repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/tuffgit21.gpg
+    <div class="container">
+        <h2>Repository setup</h2>
+        <p class="muted">Signed <span class="badge">InRelease</span> <span class="badge">Release.gpg</span> — fingerprint <code>38A975C0 7DA0CB7C 82484843 B88AE409 4A478224</code></p>
+        <pre><code>curl -fsSL https://tuffgit21.github.io/tuffgit21-APT-repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/tuffgit21.gpg
 echo "deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list
 sudo apt update
-sudo apt install &lt;package&gt;</code></pre>
-    <p>Alternative (unsigned, no key):<br><code>echo "deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list</code></p>
-    <p><a href="./public.key">public.key</a> • <a href="./tuffgit21.gpg">tuffgit21.gpg</a> • fingerprint: <code>38A975C0 7DA0CB7C 82484843 B88AE409 4A478224</code></p>
+sudo apt install pyshell   # example</code></pre>
+        <p class="muted">Unsigned fallback: <code>deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main</code> · <a href="./public.key">public.key</a> · <a href="./tuffgit21.gpg">tuffgit21.gpg</a> · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">GitHub</a></p>
 
-    <h2>Browse packages</h2>
-    <ul>
-        <li><a href="./pool/main/a/a.html">a/</a> - autotest</li>
-        <li><a href="./pool/main/d/d.html">d/</a> - DebAppBuilder</li>
-        <li><a href="./pool/main/l/l.html">l/</a> - LightCalc</li>
-        <li><a href="./pool/main/p/p.html">p/</a> - package, passgencli, passgengui, pyshell</li>
-        <li><a href="./dists/stable/main/binary-amd64/Packages">Packages</a> (raw)</li>
-    </ul>
+        <h2>Index of /</h2>
+        <table class="index">
+            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><span class="icon">📁</span><a href="./dists/">dists/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Release, InRelease, Packages</td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/">pool/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Deb archives</td></tr>
+                <tr><td><span class="icon">🔑</span><a href="./public.key">public.key</a></td><td>2026-09-20 15:54</td><td class="size">3.9K</td><td>ASCII armored public key</td></tr>
+                <tr><td><span class="icon">🔑</span><a href="./tuffgit21.gpg">tuffgit21.gpg</a></td><td>2026-09-20 15:54</td><td class="size">2.8K</td><td>dearmored keyring</td></tr>
+            </tbody>
+        </table>
 
-    <h2>Available packages</h2>
-    <ul>
-        <li><code>autotest</code> (1.0) - all</li>
-        <li><code>debappbuilder</code> (2.4, 2.0, 1.5) - amd64</li>
-        <li><code>lightcalc</code> (2.0-release) - amd64</li>
-        <li><code>package</code> (1.0-test) - amd64</li>
-        <li><code>passgencli</code> (1.8) - all</li>
-        <li><code>passgengui</code> (1.8) - all</li>
-        <li><code>pyshell</code> (1.0.0) - all</li>
-    </ul>
+        <h2>Index of /dists/stable</h2>
+        <table class="index">
+            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release">Release</a></td><td>2026-09-20 16:03</td><td class="size">713 B</td><td>Checksums</td></tr>
+                <tr><td><span class="icon">📄</span><a href="./dists/stable/InRelease">InRelease</a></td><td>2026-09-20 16:03</td><td class="size">1.6K</td><td>Clearsigned Release</td></tr>
+                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release.gpg">Release.gpg</a></td><td>2026-09-20 16:03</td><td class="size">833 B</td><td>Detached signature</td></tr>
+                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td><td>2026-09-20 16:03</td><td class="size">3.2K</td><td>amd64/all index</td></tr>
+                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>2026-09-20 16:03</td><td class="size">1.2K</td><td>Compressed index</td></tr>
+            </tbody>
+        </table>
 
-    <p><a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a></p>
+        <h2>Index of /pool</h2>
+        <table class="index">
+            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/a/a.html">a/</a></td><td>-</td><td class="size">-</td><td>autotest (1.0)</td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/d/d.html">d/</a></td><td>-</td><td class="size">-</td><td>DebAppBuilder (1.5, 2.0, 2.4)</td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/l/l.html">l/</a></td><td>-</td><td class="size">-</td><td>LightCalc (2.0-release)</td></tr>
+                <tr><td><span class="icon">📁</span><a href="./pool/main/p/p.html">p/</a></td><td>-</td><td class="size">-</td><td>package, passgencli, passgengui, pyshell</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Packages in pool</h2>
+        <table class="index">
+            <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
+            <tbody>
+                <tr><td><code>autotest</code></td><td>1.0</td><td>all</td><td><a href="./pool/main/a/autotest/autotest_1.0_all.deb">autotest_1.0_all.deb</a> <span class="muted">768 B</span></td></tr>
+                <tr><td><code>DebAppBuilder</code></td><td>1.5-release</td><td>amd64</td><td><a href="./pool/main/d/debappbuilder/DebAppBuilder_1.5-release_amd64.deb">DebAppBuilder_1.5-release_amd64.deb</a> <span class="muted">839.5K</span></td></tr>
+                <tr><td><code>debappbuilder</code></td><td>2.0</td><td>amd64</td><td><a href="./pool/main/d/debappbuilder/DebAppBuilder_2.0_amd64.deb">DebAppBuilder_2.0_amd64.deb</a> <span class="muted">733.6K</span></td></tr>
+                <tr><td><code>debappbuilder</code></td><td>2.4</td><td>amd64</td><td><a href="./pool/main/d/debappbuilder/debian-app-builder_2.4_amd64.deb">debian-app-builder_2.4_amd64.deb</a> <span class="muted">1016.1K</span></td></tr>
+                <tr><td><code>LightCalc</code></td><td>2.0-release</td><td>amd64</td><td><a href="./pool/main/l/lightcalc/LightCalc_2.0-release_amd64.deb">LightCalc_2.0-release_amd64.deb</a> <span class="muted">581.6K</span></td></tr>
+                <tr><td><code>package</code></td><td>1.0-test</td><td>amd64</td><td><a href="./pool/main/p/package/package_1.0-test_amd64.deb">package_1.0-test_amd64.deb</a> <span class="muted">4.1M</span></td></tr>
+                <tr><td><code>passgencli</code></td><td>1.8</td><td>all</td><td><a href="./pool/main/p/passgencli/passgencli.deb">passgencli.deb</a> <span class="muted">2.4K</span></td></tr>
+                <tr><td><code>passgengui</code></td><td>1.8</td><td>all</td><td><a href="./pool/main/p/passgengui/passgengui.deb">passgengui.deb</a> <span class="muted">2.6K</span></td></tr>
+                <tr><td><code>pyshell</code></td><td>1.0.0</td><td>all</td><td><a href="./pool/main/p/pyshell/pyshell_1.0.0_all.deb">pyshell_1.0.0_all.deb</a> <span class="muted">125.2K</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages · Apache/Debian style index
+        </div>
+    </div>
 </body>
 </html>
