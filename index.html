@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tuffgit21 APT Repo</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 6px; }
+        code { background: #eee; padding: 2px 4px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>tuffgit21 APT Repository</h1>
+    <p>Debian/Ubuntu repository hosted on GitHub Pages.</p>
+
+    <h2>Quick setup</h2>
+    <pre><code>echo "deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list
+sudo apt update
+sudo apt install &lt;package&gt;</code></pre>
+    <p><em>Note:</em> <code>[trusted=yes]</code> is needed because this repo is currently unsigned. To remove it, sign <code>dists/stable/Release</code> with GPG and distribute the public key.</p>
+
+    <h2>Browse packages</h2>
+    <ul>
+        <li><a href="./pool/main/a/a.html">a/</a> - autotest</li>
+        <li><a href="./pool/main/d/d.html">d/</a> - DebAppBuilder</li>
+        <li><a href="./pool/main/l/l.html">l/</a> - LightCalc</li>
+        <li><a href="./pool/main/p/p.html">p/</a> - package, passgencli, passgengui, pyshell</li>
+        <li><a href="./dists/stable/main/binary-amd64/Packages">Packages</a> (raw)</li>
+    </ul>
+
+    <h2>Available packages</h2>
+    <ul>
+        <li><code>autotest</code> (1.0) - all</li>
+        <li><code>debappbuilder</code> (2.4, 2.0, 1.5) - amd64</li>
+        <li><code>lightcalc</code> (2.0-release) - amd64</li>
+        <li><code>package</code> (1.0-test) - amd64</li>
+        <li><code>passgencli</code> (1.8) - all</li>
+        <li><code>passgengui</code> (1.8) - all</li>
+        <li><code>pyshell</code> (1.0.0) - all</li>
+    </ul>
+
+    <p><a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a></p>
+</body>
+</html>

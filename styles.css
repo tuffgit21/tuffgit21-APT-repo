@@ -1,0 +1,14 @@
+ a {
+        font-size: 20px;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+    }
+    a:hover{
+        text-shadow: 0 0 10px #00ffff;
+        transition: 0.3s ease-in-out
+    }
+    li {
+        font-size: 25px;
+        
+    }

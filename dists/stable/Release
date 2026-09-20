@@ -1,0 +1,18 @@
+Origin: tuffgit21 APT Repo
+Label: tuffgit21
+Suite: stable
+Codename: stable
+Version: 1.0
+Architectures: amd64 all
+Components: main
+Description: tuffgit21 APT repository
+Date: Sun, 20 Sep 2026 12:34:44 UTC
+MD5Sum:
+ 13a9c4fbc98062b91d4338391dbc9175 2881 main/binary-amd64/Packages
+ 88dc01625abab32f8652f71e1bbf84ef 1059 main/binary-amd64/Packages.gz
+SHA1:
+ 6167604ecc3151d3ca99a9fed2b5d065126a4bd0 2881 main/binary-amd64/Packages
+ 05b25142266d889f712ac6dcd39a34c56ece06dd 1059 main/binary-amd64/Packages.gz
+SHA256:
+ 5f84f6bd11d860972169fd3a5222ca7408f69584f5e803210c0650ced5b9f0f6 2881 main/binary-amd64/Packages
+ d307f977ded2f71b6122330cb2b34cc4f9f005ed8a53f84293e4b3a569f3556c 1059 main/binary-amd64/Packages.gz
