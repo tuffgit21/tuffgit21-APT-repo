@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index of /pool/main/j - tuffgit21 APT</title>
-    <link rel="stylesheet" href="../../../styles.css">
+    <title>Index of /pool/main/p/pyshell - tuffgit21 APT</title>
+    <link rel="stylesheet" href="../../../../styles.css">
 </head>
 <body>
     <header class="site-header">
-        <h1>Index of /pool/main/j <span>— tuffgit21 APT</span></h1>
+        <h1>Index of /pool/main/p/pyshell <span>— tuffgit21 APT</span></h1>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
-        <p><a href="../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
+        <p><a href="../../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
     </header>
     <div class="container">
-        
+        <div class="search-box"><input type="search" id="pkgSearch" placeholder="Filter..." aria-label="Filter"><span class="count" id="pkgCount"></span><button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button></div>
         <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">⬆️</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
-
+                <tr><td><span class="icon">📦</span><a href="pyshell_1.0.0_all.deb" download>pyshell_1.0.0_all.deb</a></td><td>2026-09-16 17:37</td><td class="size">125.2K</td><td>pyshell 1.0.0 (all)</td></tr>
             </tbody>
         </table></div>
-        <p class="muted"><em>empty</em></p>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
     </div>
     <script>
@@ -51,7 +50,7 @@
         const clear=document.getElementById('pkgClear');
         const tbl=document.getElementById('pkgTable');
         if(!q||!tbl) return;
-        const rows=[...tbl.tBodies[0].rows].filter(r=> !r.textContent.includes('Parent Directory'));
+        const rows=[...tbl.tBodies[0].rows].filter(r=>r.textContent.includes('📦'));
         function filter(){
             const s=q.value.trim().toLowerCase();
             let vis=0;

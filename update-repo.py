@@ -271,22 +271,20 @@ def update_html(debs):
             if tmpl:
                 tmpl = tmpl.replace("/pool/main/c ", f"/pool/main/{letter} ").replace("Index of /pool/main/c", f"Index of /pool/main/{letter}")
                 html_path.write_text(tmpl, encoding="utf-8")
-    # --- per-letter pool pages: regenerate from template (no regex duplicate) ---
-    # use current pool html as template for structure, but build rows anew
+    # --- per-letter pool pages: show application folders (like dists/stable -> main) not flattened packages ---
     for letter in string.ascii_lowercase:
-        items = by_letter.get(letter, [])
-        html_path = pool_main / letter / f"{letter}.html"
-        (pool_main / letter).mkdir(parents=True, exist_ok=True)
+        letter_dir = pool_main / letter
+        letter_dir.mkdir(parents=True, exist_ok=True)
+        html_path = letter_dir / f"{letter}.html"
+        # discover application folders inside letter_dir
+        apps = sorted([p for p in letter_dir.iterdir() if p.is_dir()], key=lambda p: p.name.lower())
         rows = []
-        for deb, fields in sorted(items, key=lambda x: x[1].get("Package","").lower()):
-            pkg = fields.get("Package","")
-            ver = fields.get("Version","")
-            arch = fields.get("Architecture","")
-            size = _fmt_size(deb.stat().st_size)
-            mtime = _fmt_date(deb.stat().st_mtime)
-            rows.append(f'                <tr><td><span class="icon">\U0001f4e6</span><a href="{deb.parent.name}/{deb.name}" download>{deb.name}</a></td><td>{mtime}</td><td class="size">{size}</td><td>{pkg} {ver} ({arch})</td></tr>')
+        for app in apps:
+            mtime = _fmt_date(app.stat().st_mtime)
+            debs = list(app.glob("*.deb"))
+            desc = f"{len(debs)} package" + ("s" if len(debs)!=1 else "") if debs else ""
+            rows.append(f'                <tr><td><span class="icon">\U0001f4c1</span><a href="{app.name}/">{app.name}/</a></td><td>{mtime}</td><td class="size">-</td><td>{desc}</td></tr>')
         rows_str = "\n".join(rows)
-        # build fresh html from correct template (ensures no duplicates, correct wrapper)
         has_pkg = len(rows) > 0
         search_box = '<div class="search-box"><input type="search" id="pkgSearch" placeholder="Filter..." aria-label="Filter"><span class="count" id="pkgCount"></span><button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button></div>' if has_pkg else ""
         empty_marker = "" if has_pkg else '\n        <p class="muted"><em>empty</em></p>'
@@ -311,7 +309,7 @@ def update_html(debs):
         <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
-                <tr><td><span class="icon">\u2b06\uFE0F</span><a href="../../../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
+                <tr><td><span class="icon">\u2b06\uFE0F</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
 {rows_str}
             </tbody>
         </table></div>{empty_marker}
@@ -326,6 +324,107 @@ def update_html(debs):
             else if(t==='light') document.documentElement.setAttribute('data-theme','light');
             else document.documentElement.removeAttribute('data-theme');
             if(b) b.textContent = (t==='dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? '\u2600\uFE0F Light' : '\U0001f319 Dark';
+        }}
+        let cur=localStorage.getItem(k);
+        apply(cur);
+        if(b) b.onclick=()=>{{
+            const isDark=document.documentElement.getAttribute('data-theme')==='dark' || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const nxt=isDark?'light':'dark';
+            localStorage.setItem(k,nxt); apply(nxt);
+        }};
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{{ if(!localStorage.getItem(k)) apply(null); }});
+    }})();
+    </script>
+    <script>
+    (function(){{
+        const q=document.getElementById('pkgSearch');
+        const c=document.getElementById('pkgCount');
+        const clear=document.getElementById('pkgClear');
+        const tbl=document.getElementById('pkgTable');
+        if(!q||!tbl) return;
+        const rows=[...tbl.tBodies[0].rows].filter(r=> !r.textContent.includes('Parent Directory'));
+        function filter(){{
+            const s=q.value.trim().toLowerCase();
+            let vis=0;
+            rows.forEach(r=>{{
+                const ok=!s || r.textContent.toLowerCase().includes(s);
+                r.style.display=ok?'':'none';
+                if(ok) vis++;
+            }});
+            if(c) c.textContent=vis+' / '+rows.length+' packages'+(s?' for "'+q.value+'"':'');
+            const no=document.getElementById('pkgNoResults');
+            const qSpan=document.getElementById('pkgQuery');
+            const empty=s && vis===0;
+            tbl.style.display=empty?'none':'';
+            if(no){{ no.style.display=empty?'block':'none'; if(qSpan) qSpan.textContent=q.value; }}
+        }}
+        q.addEventListener('input',filter);
+        if(clear) clear.addEventListener('click',()=>{{q.value='';filter();q.focus();}});
+        filter();
+    }})();
+    </script>
+</body>
+</html>
+'''
+        html_path.write_text(html, encoding="utf-8")
+        (letter_dir / "index.html").write_text(html, encoding="utf-8")
+        print(f"Updated {html_path.relative_to(REPO)} ({len(rows)} apps)")
+    # generate per-application indexes (pool/main/<letter>/<app>/ -> list debs inside app folder)
+    for letter in string.ascii_lowercase:
+        letter_dir = pool_main / letter
+        for app in [p for p in letter_dir.iterdir() if p.is_dir()]:
+            debs = sorted(app.glob("*.deb"))
+            if not debs:
+                continue
+            a_rows = []
+            for deb in debs:
+                # try to get package fields for nicer description
+                try:
+                    flds = parse_deb_control(deb)
+                except Exception:
+                    flds = {}
+                pkg = flds.get("Package", deb.stem.split("_")[0]) if flds else deb.stem.split("_")[0]
+                ver = flds.get("Version", "") if flds else ""
+                arch = flds.get("Architecture", "") if flds else ""
+                desc = f"{pkg} {ver} ({arch})".strip() if pkg else deb.name
+                size = _fmt_size(deb.stat().st_size)
+                mtime = _fmt_date(deb.stat().st_mtime)
+                a_rows.append(f'                <tr><td><span class="icon">\U0001f4e6</span><a href="{deb.name}" download>{deb.name}</a></td><td>{mtime}</td><td class="size">{size}</td><td>{desc}</td></tr>')
+            a_rows_str = "\n".join(a_rows)
+            a_html = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index of /pool/main/{letter}/{app.name} - tuffgit21 APT</title>
+    <link rel="stylesheet" href="../../../../styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Index of /pool/main/{letter}/{app.name} <span>— tuffgit21 APT</span></h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">\U0001f319 Dark</button>
+        <p><a href="../../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
+    </header>
+    <div class="container">
+        <div class="search-box"><input type="search" id="pkgSearch" placeholder="Filter..." aria-label="Filter"><span class="count" id="pkgCount"></span><button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button></div>
+        <div class="table-wrap"><table class="index" id="pkgTable">
+            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><span class="icon">\u2b06\ufe0f</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
+{a_rows_str}
+            </tbody>
+        </table></div>
+        <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
+    </div>
+    <script>
+    (function(){{
+        const k='tuffgit21-theme';
+        const b=document.getElementById('themeToggle');
+        function apply(t){{
+            if(t==='dark') document.documentElement.setAttribute('data-theme','dark');
+            else if(t==='light') document.documentElement.setAttribute('data-theme','light');
+            else document.documentElement.removeAttribute('data-theme');
+            if(b) b.textContent = (t==='dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? '\u2600\ufe0f Light' : '\U0001f319 Dark';
         }}
         let cur=localStorage.getItem(k);
         apply(cur);
@@ -368,19 +467,17 @@ def update_html(debs):
 </body>
 </html>
 '''
-        html_path.write_text(html, encoding="utf-8")
-        print(f"Updated {html_path.relative_to(REPO)} ({len(rows)} packages)")
-    # remove empty letter html files that no longer have packages (optional)
+            (app / "index.html").write_text(a_html, encoding="utf-8")
+            print(f"Updated {app.relative_to(REPO)}/index.html ({len(a_rows)} packages)")
+    # keep empty letter pages
     for letter_dir in pool_main.iterdir():
         if letter_dir.is_dir():
             letter = letter_dir.name
-            if letter not in by_letter and len(letter)==1 and letter.isalpha():
-                html_path = letter_dir / f"{letter}.html"
-                if html_path.exists():
-                    # check if empty (only Parent Directory)
-                    txt = html_path.read_text(encoding="utf-8")
-                    if "\U0001f4e6" not in txt:
-                        print(f"Note: {letter}/ is empty - keeping empty page")
+            apps_here = [p for p in letter_dir.iterdir() if p.is_dir()]
+            if not apps_here and len(letter)==1 and letter.isalpha():
+                txt = (letter_dir / f"{letter}.html").read_text(encoding="utf-8") if (letter_dir / f"{letter}.html").exists() else ""
+                if "\U0001f4c1" not in txt and "\U0001f4e6" not in txt:
+                    print(f"Note: {letter}/ is empty - keeping empty page")
 
 if __name__ == "__main__":
     main()

@@ -17,8 +17,8 @@
         <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
-                <tr><td><span class="icon">⬆️</span><a href="../../../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
-                <tr><td><span class="icon">📦</span><a href="lightcalc/LightCalc_2.0-release_amd64.deb" download>LightCalc_2.0-release_amd64.deb</a></td><td>2026-08-23 16:35</td><td class="size">581.6K</td><td>LightCalc 2.0-release (amd64)</td></tr>
+                <tr><td><span class="icon">⬆️</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
+                <tr><td><span class="icon">📁</span><a href="lightcalc/">lightcalc/</a></td><td>2026-09-17 17:08</td><td class="size">-</td><td>1 package</td></tr>
             </tbody>
         </table></div>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
@@ -50,7 +50,7 @@
         const clear=document.getElementById('pkgClear');
         const tbl=document.getElementById('pkgTable');
         if(!q||!tbl) return;
-        const rows=[...tbl.tBodies[0].rows].filter(r=>r.textContent.includes('📦'));
+        const rows=[...tbl.tBodies[0].rows].filter(r=> !r.textContent.includes('Parent Directory'));
         function filter(){
             const s=q.value.trim().toLowerCase();
             let vis=0;
