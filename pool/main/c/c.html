@@ -9,6 +9,7 @@
 <body>
     <header class="site-header">
         <h1>Index of /pool/main/c <span>— tuffgit21 APT</span></h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
         <p><a href="../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
     </header>
     <div class="container">
@@ -20,5 +21,25 @@
         </table>
         <p class="muted"><em>empty</em></p>
     </div>
+    <script>
+    (function(){
+        const k='tuffgit21-theme';
+        const b=document.getElementById('themeToggle');
+        function apply(t){
+            if(t==='dark') document.documentElement.setAttribute('data-theme','dark');
+            else if(t==='light') document.documentElement.setAttribute('data-theme','light');
+            else document.documentElement.removeAttribute('data-theme');
+            if(b) b.textContent = (t==='dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? '☀️ Light' : '🌙 Dark';
+        }
+        let cur=localStorage.getItem(k);
+        apply(cur);
+        if(b) b.onclick=()=>{
+            const isDark=document.documentElement.getAttribute('data-theme')==='dark' || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const nxt=isDark?'light':'dark';
+            localStorage.setItem(k,nxt); apply(nxt);
+        };
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{ if(!localStorage.getItem(k)) apply(null); });
+    })();
+    </script>
 </body>
 </html>

@@ -10,6 +10,7 @@
     <header class="site-header">
         <h1>Debian APT Repository <span>— tuffgit21</span></h1>
         <p>Stable distribution · Component main · Architectures amd64, all · https://tuffgit21.github.io/tuffgit21-APT-repo</p>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
     </header>
 
     <div class="container">
@@ -56,7 +57,12 @@ sudo apt install pyshell   # example</code></pre>
         </table>
 
         <h2>Packages in pool</h2>
-        <table class="index">
+        <div class="search-box">
+            <input type="search" id="pkgSearch" placeholder="Search packages (name, version, arch, file)..." aria-label="Search packages">
+            <span class="count" id="pkgCount">9 packages</span>
+            <button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button>
+        </div>
+        <table class="index" id="pkgTable">
             <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
             <tbody>
                 <tr><td><code>autotest</code></td><td>1.0</td><td>all</td><td><a href="./pool/main/a/autotest/autotest_1.0_all.deb">autotest_1.0_all.deb</a> <span class="muted">768 B</span></td></tr>
@@ -72,8 +78,55 @@ sudo apt install pyshell   # example</code></pre>
         </table>
 
         <div class="footer">
-            tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages · Apache/Debian style index
+            tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages · Apache/Debian style index · <span class="muted">Light / Dark auto + toggle</span>
         </div>
     </div>
+    <script>
+    (function(){
+        const k='tuffgit21-theme';
+        const b=document.getElementById('themeToggle');
+        function apply(t){
+            if(t==='dark') document.documentElement.setAttribute('data-theme','dark');
+            else if(t==='light') document.documentElement.setAttribute('data-theme','light');
+            else document.documentElement.removeAttribute('data-theme');
+            b.textContent = (t==='dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? '☀️ Light' : '🌙 Dark';
+        }
+        let cur=localStorage.getItem(k);
+        apply(cur);
+        b.onclick=()=>{
+            const isDark=document.documentElement.getAttribute('data-theme')==='dark' || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const nxt=isDark?'light':'dark';
+            localStorage.setItem(k,nxt); apply(nxt);
+        };
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{
+            if(!localStorage.getItem(k)) apply(null);
+        });
+    })();
+    (function(){
+        const q=document.getElementById('pkgSearch');
+        const c=document.getElementById('pkgCount');
+        const clear=document.getElementById('pkgClear');
+        const tbl=document.getElementById('pkgTable');
+        if(!q||!tbl) return;
+        const rows=[...tbl.tBodies[0].rows];
+        function filter(){
+            const s=q.value.trim().toLowerCase();
+            let vis=0;
+            rows.forEach(r=>{
+                const txt=r.textContent.toLowerCase();
+                const ok=!s || txt.includes(s);
+                r.style.display=ok?'':'none';
+                if(ok) vis++;
+            });
+            c.textContent = vis + ' / ' + rows.length + ' packages' + (s ? ' for "'+q.value+'"' : '');
+        }
+        q.addEventListener('input', filter);
+        clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
+        // deep-link ?q=
+        const u=new URLSearchParams(location.search);
+        if(u.get('q')){ q.value=u.get('q'); filter(); }
+        filter();
+    })();
+    </script>
 </body>
 </html>
