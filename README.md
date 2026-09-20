@@ -17,23 +17,20 @@ Debian APT repository hosted on GitHub Pages: `https://tuffgit21.github.io/tuffg
 └── pool/main/<letter>/<letter>.html  # browsable indexes
 ```
 
-## Usage (client)
+## Usage (client) — signed (recommended)
 
 ```bash
-echo "deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list
+curl -fsSL https://tuffgit21.github.io/tuffgit21-APT-repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/tuffgit21.gpg
+echo "deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list
 sudo apt update
 sudo apt install pyshell   # example
 ```
+Fingerprint: `38A9 75C0 7DA0 CB7C 8248 4843 B88A E409 4A47 8224` — verify with `gpg --show-keys public.key`
 
-> `trusted=yes` is required while the repo is unsigned. To remove it, sign `dists/stable/Release`:
-> ```bash
-> gpg --default-key YOURKEYID -abs -o dists/stable/Release.gpg dists/stable/Release
-> gpg --default-key YOURKEYID --clearsign -o dists/stable/InRelease dists/stable/Release
-> # publish pubkey
-> gpg --armor --export YOURKEYID > public.key
-> # clients: curl -fsSL https://tuffgit21.github.io/tuffgit21-APT-repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/tuffgit21.gpg
-> # then use: deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo stable main
-> ```
+Unsigned fallback:
+```bash
+echo "deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list
+```
 
 ## Maintainer: adding a package
 
