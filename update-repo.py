@@ -232,13 +232,12 @@ def update_html(debs):
         # replace Packages table tbody
         # find Packages in pool section by id pkgTable
         html = re.sub(r'(<table class="index" id="pkgTable">.*?<tbody>).*?(</tbody>)', lambda m: m.group(1) + "\n" + new_tbody + "\n            " + m.group(2), html, flags=re.DOTALL)
-        # Index of /pool - letter table
-        pool_letters = sorted(by_letter.keys())
+        # Index of /pool - all a-z (even if empty)
+        import string
+        pool_letters = list(string.ascii_lowercase)  # all a-z
         pool_rows = []
         for letter in pool_letters:
             pool_rows.append(f'                <tr><td><span class="icon">\U0001f4c1</span><a href="./pool/main/{letter}/{letter}.html">{letter}/</a></td></tr>')
-        if not pool_rows:
-            pool_rows = ['                <tr><td class="muted">No pool letters yet</td></tr>']
         new_pool_tbody = "\n".join(pool_rows)
         html = re.sub(r'(<table class="index" id="poolTable">.*?<tbody>).*?(</tbody>)', lambda m: m.group(1) + "\n" + new_pool_tbody + "\n            " + m.group(2), html, flags=re.DOTALL)
         # dists table - update dates/sizes
@@ -260,8 +259,19 @@ def update_html(debs):
         idx.write_text(html, encoding="utf-8")
         print(f"Updated {idx} Packages ({len(deb_infos)} rows) and pool letters {pool_letters}")
 
-    # --- per-letter pool pages ---
+    # ensure all a-z html pages exist (empty template if missing)
+    import string
     pool_main = REPO / "pool" / "main"
+    for letter in string.ascii_lowercase:
+        html_path = pool_main / letter / f"{letter}.html"
+        if not html_path.exists():
+            (pool_main / letter).mkdir(parents=True, exist_ok=True)
+            # use c.html as template for empty
+            tmpl = (pool_main / "c" / "c.html").read_text(encoding="utf-8") if (pool_main / "c" / "c.html").exists() else ""
+            if tmpl:
+                tmpl = tmpl.replace("/pool/main/c ", f"/pool/main/{letter} ").replace("Index of /pool/main/c", f"Index of /pool/main/{letter}")
+                html_path.write_text(tmpl, encoding="utf-8")
+    # --- per-letter pool pages ---
     for letter, items in by_letter.items():
         html_path = pool_main / letter / f"{letter}.html"
         if not html_path.exists():
