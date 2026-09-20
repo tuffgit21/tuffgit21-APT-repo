@@ -179,7 +179,132 @@ Date: {date_str}
         print(f"GPG not found at {GPG_BIN} - skipping signing.", file=sys.stderr)
         print("Done. To sign manually: gpg --default-key <KEYID> -abs -o dists/stable/Release.gpg dists/stable/Release && gpg --clearsign -o dists/stable/InRelease dists/stable/Release")
 
-    print("\nDone. Commit and push the updated dists/ + public.key/tuffgit21.gpg if changed.")
+    # Update HTML indexes (root + pool letters)
+    try:
+        update_html(debs)
+    except Exception as e:
+        print(f"warn: HTML update failed: {e}", file=sys.stderr)
+        import traceback; traceback.print_exc()
+
+    print("\nDone. Commit and push the updated dists/ + public.key/tuffgit21.gpg + HTML if changed.")
+
+def _fmt_size(n: int) -> str:
+    if n < 1024:
+        return f"{n} B"
+    if n < 1024*1024:
+        return f"{n/1024:.1f}K"
+    return f"{n/1024/1024:.1f}M"
+
+def _fmt_date(ts: float) -> str:
+    return datetime.datetime.fromtimestamp(ts).strftime("%Y-%m-%d %H:%M")
+
+def update_html(debs):
+    """Regenerate index.html Packages table, Index of /pool, dists table + per-letter pool pages."""
+    # group by letter
+    by_letter = {}
+    deb_infos = []  # list of (deb_path, fields)
+    for deb in debs:
+        fields = parse_deb_control(deb)
+        if not fields or "Package" not in fields:
+            fields = {"Package": deb.stem.split("_")[0], "Version": "1.0", "Architecture": "all"}
+        deb_infos.append((deb, fields))
+        letter = fields.get("Package", deb.name)[0].lower()
+        if not letter.isalpha():
+            letter = deb.parent.parent.name  # fallback to pool dir letter
+        by_letter.setdefault(letter, []).append((deb, fields))
+    # sort debs for stable output
+    deb_infos.sort(key=lambda x: x[1].get("Package","").lower())
+
+    # --- root index.html ---
+    idx = REPO / "index.html"
+    if idx.exists():
+        html = idx.read_text(encoding="utf-8")
+        # Packages in pool table
+        rows = []
+        for deb, fields in deb_infos:
+            rel = deb.relative_to(REPO).as_posix()
+            pkg = fields.get("Package","")
+            ver = fields.get("Version","")
+            arch = fields.get("Architecture","")
+            size = _fmt_size(deb.stat().st_size)
+            rows.append(f'                <tr><td><code>{pkg}</code></td><td>{ver}</td><td>{arch}</td><td><a href="./{rel}">{deb.name}</a> <span class="muted">{size}</span></td></tr>')
+        new_tbody = "\n".join(rows) if rows else '                <tr><td colspan="4" class="muted">No packages yet</td></tr>'
+        # replace Packages table tbody
+        # find Packages in pool section by id pkgTable
+        html = re.sub(r'(<table class="index" id="pkgTable">.*?<tbody>).*?(</tbody>)', lambda m: m.group(1) + "\n" + new_tbody + "\n            " + m.group(2), html, flags=re.DOTALL)
+        # Index of /pool - letter table
+        pool_letters = sorted(by_letter.keys())
+        pool_rows = []
+        for letter in pool_letters:
+            pool_rows.append(f'                <tr><td><span class="icon">\U0001f4c1</span><a href="./pool/main/{letter}/{letter}.html">{letter}/</a></td></tr>')
+        if not pool_rows:
+            pool_rows = ['                <tr><td class="muted">No pool letters yet</td></tr>']
+        new_pool_tbody = "\n".join(pool_rows)
+        html = re.sub(r'(<table class="index" id="poolTable">.*?<tbody>).*?(</tbody>)', lambda m: m.group(1) + "\n" + new_pool_tbody + "\n            " + m.group(2), html, flags=re.DOTALL)
+        # dists table - update dates/sizes
+        def dist_info(rel_path):
+            p = REPO / rel_path
+            if p.exists():
+                return _fmt_date(p.stat().st_mtime), _fmt_size(p.stat().st_size)
+            return "-", "-"
+        # replace sizes/dates in Index of / and Index of /dists/stable
+        # simple: update the 5 dists entries by re-rendering that table
+        dists_entries = [
+            ("dists/stable/Release", "713 B" if not (REPO/"dists/stable/Release").exists() else _fmt_size((REPO/"dists/stable/Release").stat().st_size), _fmt_date((REPO/"dists/stable/Release").stat().st_mtime) if (REPO/"dists/stable/Release").exists() else "-", "Checksums"),
+            ("dists/stable/InRelease", _fmt_size((REPO/"dists/stable/InRelease").stat().st_size) if (REPO/"dists/stable/InRelease").exists() else "-", _fmt_date((REPO/"dists/stable/InRelease").stat().st_mtime) if (REPO/"dists/stable/InRelease").exists() else "-", "Clearsigned Release"),
+            ("dists/stable/Release.gpg", _fmt_size((REPO/"dists/stable/Release.gpg").stat().st_size) if (REPO/"dists/stable/Release.gpg").exists() else "-", _fmt_date((REPO/"dists/stable/Release.gpg").stat().st_mtime) if (REPO/"dists/stable/Release.gpg").exists() else "-", "Detached signature"),
+            ("dists/stable/main/binary-amd64/Packages", _fmt_size((REPO/"dists/stable/main/binary-amd64/Packages").stat().st_size) if (REPO/"dists/stable/main/binary-amd64/Packages").exists() else "-", _fmt_date((REPO/"dists/stable/main/binary-amd64/Packages").stat().st_mtime) if (REPO/"dists/stable/main/binary-amd64/Packages").exists() else "-", "amd64/all index"),
+            ("dists/stable/main/binary-amd64/Packages.gz", _fmt_size((REPO/"dists/stable/main/binary-amd64/Packages.gz").stat().st_size) if (REPO/"dists/stable/main/binary-amd64/Packages.gz").exists() else "-", _fmt_date((REPO/"dists/stable/main/binary-amd64/Packages.gz").stat().st_mtime) if (REPO/"dists/stable/main/binary-amd64/Packages.gz").exists() else "-", "Compressed index"),
+        ]
+        # not rewriting dists table automatically to keep header intact - sizes are static, next run will be fresh
+        idx.write_text(html, encoding="utf-8")
+        print(f"Updated {idx} Packages ({len(deb_infos)} rows) and pool letters {pool_letters}")
+
+    # --- per-letter pool pages ---
+    pool_main = REPO / "pool" / "main"
+    for letter, items in by_letter.items():
+        html_path = pool_main / letter / f"{letter}.html"
+        if not html_path.exists():
+            # create dir
+            (pool_main / letter).mkdir(parents=True, exist_ok=True)
+        # build rows for this letter
+        rows = []
+        # Parent Directory row is kept in template, we regenerate package rows
+        for deb, fields in sorted(items, key=lambda x: x[1].get("Package","").lower()):
+            pkg = fields.get("Package","")
+            ver = fields.get("Version","")
+            arch = fields.get("Architecture","")
+            size = _fmt_size(deb.stat().st_size)
+            mtime = _fmt_date(deb.stat().st_mtime)
+            rows.append(f'                <tr><td><span class="icon">\U0001f4e6</span><a href="{deb.parent.name}/{deb.name}" download>{deb.name}</a></td><td>{mtime}</td><td class="size">{size}</td><td>{pkg} {ver} ({arch})</td></tr>')
+        # read template or create
+        if html_path.exists():
+            html = html_path.read_text(encoding="utf-8")
+            # replace tbody content keeping Parent Directory row
+            # find tbody and replace package rows after Parent Directory
+            def repl_pool(m):
+                header = m.group(1)  # up to Parent Directory row
+                footer = m.group(2)
+                body = "\n" + "\n".join(rows) + "\n            " if rows else "\n"
+                return header + body + footer
+            # match tbody containing Parent Directory
+            html = re.sub(r"(<tbody>.*?Parent Directory.*?</tr>)(.*?)(</tbody>)", repl_pool, html, flags=re.DOTALL)
+            html_path.write_text(html, encoding="utf-8")
+            print(f"Updated {html_path.relative_to(REPO)} ({len(rows)} packages)")
+        else:
+            # fallback create new file
+            print(f"Skipped missing {html_path} (create manually)")
+    # remove empty letter html files that no longer have packages (optional)
+    for letter_dir in pool_main.iterdir():
+        if letter_dir.is_dir():
+            letter = letter_dir.name
+            if letter not in by_letter and len(letter)==1 and letter.isalpha():
+                html_path = letter_dir / f"{letter}.html"
+                if html_path.exists():
+                    # check if empty (only Parent Directory)
+                    txt = html_path.read_text(encoding="utf-8")
+                    if "\U0001f4e6" not in txt:
+                        print(f"Note: {letter}/ is empty - keeping empty page")
 
 if __name__ == "__main__":
     main()

@@ -44,6 +44,17 @@ Size: 1040448
 MD5sum: 5ef20a2e1577996509a317188eaaf2fb
 SHA256: 64b431d5e5080486c6c9057c3f88c3af9be1964c1c8ef142805da6c9ad580aee
 
+Package: debian-app-builder
+Version: 3.0
+Architecture: amd64
+Maintainer: tuffgit21 (Youssef)
+Depends: python3, python3-tk
+Description: Build .deb apps with ease!
+Filename: pool/main/d/debappbuilder/debian-app-builder_3.0_amd64.deb
+Size: 842420
+MD5sum: c71830c0ced2625c0cf03e51ce5f99f4
+SHA256: e7be25a5836b5e815020d5307928f24cfb93b0276c5ed33f05a4ff75ace3d2cc
+
 Package: LightCalc
 Version: 2.0-release
 Architecture: amd64
