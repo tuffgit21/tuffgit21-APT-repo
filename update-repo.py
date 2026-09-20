@@ -275,11 +275,8 @@ def update_html(debs):
     for letter, items in by_letter.items():
         html_path = pool_main / letter / f"{letter}.html"
         if not html_path.exists():
-            # create dir
             (pool_main / letter).mkdir(parents=True, exist_ok=True)
-        # build rows for this letter
         rows = []
-        # Parent Directory row is kept in template, we regenerate package rows
         for deb, fields in sorted(items, key=lambda x: x[1].get("Package","").lower()):
             pkg = fields.get("Package","")
             ver = fields.get("Version","")
@@ -287,23 +284,32 @@ def update_html(debs):
             size = _fmt_size(deb.stat().st_size)
             mtime = _fmt_date(deb.stat().st_mtime)
             rows.append(f'                <tr><td><span class="icon">\U0001f4e6</span><a href="{deb.parent.name}/{deb.name}" download>{deb.name}</a></td><td>{mtime}</td><td class="size">{size}</td><td>{pkg} {ver} ({arch})</td></tr>')
-        # read template or create
         if html_path.exists():
             html = html_path.read_text(encoding="utf-8")
-            # replace tbody content keeping Parent Directory row
-            # find tbody and replace package rows after Parent Directory
             def repl_pool(m):
-                header = m.group(1)  # up to Parent Directory row
+                header = m.group(1)
                 footer = m.group(2)
                 body = "\n" + "\n".join(rows) + "\n            " if rows else "\n"
                 return header + body + footer
-            # match tbody containing Parent Directory
             html = re.sub(r"(<tbody>.*?Parent Directory.*?</tr>)(.*?)(</tbody>)", repl_pool, html, flags=re.DOTALL)
             html_path.write_text(html, encoding="utf-8")
             print(f"Updated {html_path.relative_to(REPO)} ({len(rows)} packages)")
         else:
-            # fallback create new file
             print(f"Skipped missing {html_path} (create manually)")
+    # clear now-empty letters (were deleted)
+    for letter in string.ascii_lowercase:
+        if letter not in by_letter:
+            html_path = pool_main / letter / f"{letter}.html"
+            if html_path.exists():
+                html = html_path.read_text(encoding="utf-8")
+                if "\U0001f4e6" in html:
+                    # remove all package rows, keep only Parent Directory
+                    html = re.sub(r"(<tbody>.*?Parent Directory.*?</tr>)(.*?)(</tbody>)", r"\1\n\3", html, flags=re.DOTALL)
+                    # ensure no duplicate empty marker, ensure <p> empty exists
+                    if "<p class=\"muted\"><em>empty</em></p>" not in html:
+                        html = html.replace("</table>", "</table>\n        <p class=\"muted\"><em>empty</em></p>")
+                    html_path.write_text(html, encoding="utf-8")
+                    print(f"Cleared {html_path.relative_to(REPO)} (now empty)")
     # remove empty letter html files that no longer have packages (optional)
     for letter_dir in pool_main.iterdir():
         if letter_dir.is_dir():
