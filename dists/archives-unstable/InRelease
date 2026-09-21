@@ -1,0 +1,37 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Origin: tuffgit21 APT Repo
+Label: tuffgit21
+Suite: archives-unstable
+Codename: archives-unstable
+Version: 1.0
+Architectures: amd64 all
+Components: main
+Description: Archives Unstable - discontinued unstable/buggy projects (Not recommended)
+Date: Mon, 21 Sep 2026 14:59:35 UTC
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ 7e7e544a705ddec8bc8019088a3239f0 29 main/binary-amd64/Packages.gz
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 4015c110af96425465b11ac632e1746bc5779f95 29 main/binary-amd64/Packages.gz
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ 319ddda61706f583106973e45d8ea27d0b81e980abc3ed172bfcf7dd96bae640 29 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqxRlgACgkQEt1LWjHi
+/+AYfA//eMMZo+yP0/g2X7HAZqUfkl/FW/9hIFibxhwbbV7KOj32bYflYuw5g4PX
+lgwfDPz5BPjepjfYG88c+/KoD4t/xDyetfGfylE5Z4jm5DYbJiDgCKiNTiWldO3j
+St/jW+UkpJwE28lDD/XkR4WNSWTBwU9iK2FD/wCZoXfhbwV4whBOEsl/cULN2sA7
+j0jAky6KKCTGK0iXrYd3SSmV8vyAv4RfPFp3NkmAQeoTxZwx0pWfoRPtJP2+KmD5
+7aMeU4ahz/pmmy+kSefzPOr8Gyr3gk4mim1mVroutoPX7NNSBLDP7ZUYUnrFVnpD
+wcIhA9kbf6z2iF0Jl+2jDQuHOzZ1THjxY+0Mx3R344YBhtJp3VSUuH96nnMos/xh
+6Afh4gYigY+6AOLq+nnss2wa75FhXpiXvEXJlB//Z/kiXmOQQoWYYjM62u7vR687
+dalVcKz3sg1r6mP9R5eUhkYZZ83+IyC+Rl5MeQtmOXr6NkVc9ooxA9V6n2ARpPFW
+pmkf2tcTFSBe6ubmyOfkZqupZvs1bD70MrcAxoROXG97ReyDDA5cgwxtjEGBnJX7
+Qd23MdqeVwdNImFC5aRvVloFH/frjLtrHdKAEBcAJ3mt9DMa8a60mWYehhUJbg1O
+qd76KUDbny5gibk7pL+92bNiWxrv26z2vh3/fOlDQYrWOVgT/sY=
+=t3m+
+-----END PGP SIGNATURE-----

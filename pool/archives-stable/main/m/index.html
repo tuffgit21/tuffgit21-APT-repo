@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index of /pool/archives-stable/main/m - tuffgit21 APT</title>
+    <link rel="stylesheet" href="../../../../styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Index of /pool/archives-stable/main/m <span>— tuffgit21 APT</span></h1>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+        <p><a href="../../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
+    </header>
+    <div class="container">
+        
+        <div class="table-wrap"><table class="index" id="pkgTable">
+            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+            <tbody>
+                <tr><td><span class="icon">⬆️</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
+
+            </tbody>
+        </table></div>
+        <p class="muted"><em>empty</em></p>
+        <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
+    </div>
+    <script>
+    (function(){
+        const k='tuffgit21-theme';
+        const b=document.getElementById('themeToggle');
+        function apply(t){
+            if(t==='dark') document.documentElement.setAttribute('data-theme','dark');
+            else if(t==='light') document.documentElement.setAttribute('data-theme','light');
+            else document.documentElement.removeAttribute('data-theme');
+            if(b) b.textContent = (t==='dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? '☀️ Light' : '🌙 Dark';
+        }
+        let cur=localStorage.getItem(k);
+        apply(cur);
+        if(b) b.onclick=()=>{
+            const isDark=document.documentElement.getAttribute('data-theme')==='dark' || (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const nxt=isDark?'light':'dark';
+            localStorage.setItem(k,nxt); apply(nxt);
+        };
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{ if(!localStorage.getItem(k)) apply(null); });
+    })();
+    </script>
+    <script>
+    (function(){
+        const q=document.getElementById('pkgSearch');
+        const c=document.getElementById('pkgCount');
+        const clear=document.getElementById('pkgClear');
+        const tbl=document.getElementById('pkgTable');
+        if(!q||!tbl) return;
+        const rows=[...tbl.tBodies[0].rows].filter(r=> !r.textContent.includes('Parent Directory'));
+        function filter(){
+            const s=q.value.trim().toLowerCase();
+            let vis=0;
+            rows.forEach(r=>{
+                const ok=!s || r.textContent.toLowerCase().includes(s);
+                r.style.display=ok?'':'none';
+                if(ok) vis++;
+            });
+            if(c) c.textContent=vis+' / '+rows.length+' packages'+(s?' for "'+q.value+'"':'');
+            const no=document.getElementById('pkgNoResults');
+            const qSpan=document.getElementById('pkgQuery');
+            const empty=s && vis===0;
+            tbl.style.display=empty?'none':'';
+            if(no){ no.style.display=empty?'block':'none'; if(qSpan) qSpan.textContent=q.value; }
+        }
+        q.addEventListener('input',filter);
+        if(clear) clear.addEventListener('click',()=>{q.value='';filter();q.focus();});
+        filter();
+    })();
+    </script>
+</body>
+</html>

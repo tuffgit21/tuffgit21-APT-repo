@@ -1,0 +1,37 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Origin: tuffgit21 APT Repo
+Label: tuffgit21
+Suite: testing
+Codename: testing
+Version: 1.0
+Architectures: amd64 all
+Components: main
+Description: Testing - upcoming/pre-release packages (Not recommended)
+Date: Mon, 21 Sep 2026 14:59:36 UTC
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ d3076b82f8dcd7f9c611c2766fd69e65 29 main/binary-amd64/Packages.gz
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 239053a5b19ddb46718104794397355e1bfabbc9 29 main/binary-amd64/Packages.gz
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ fe9412bf233f3eb34f317966c5cbb36e143c254b2488d1283c543b68045b1d18 29 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqxRlgACgkQEt1LWjHi
+/+BxZg/8DoSyKQPfB68lmwlKvXxFm5czG6MfUVMyJaY/jeh+tDiyvYiDiAuozSNz
+LHZWaBxa+d0YRfwEjIMFtONDm6lbM69Glp0sMBciPCq02W8sPMcRWjhKd/f99jEI
+MWH1LY75Pjz6JpCySGd2VMQ7tY4rotZMFWN/TmP9LQByyZnuzoQMle/1wGXLmNoa
+ZufbHAJZa9vV/Imbx/Xtc7lSZ29o5AVP6Xt/bfnrDaBnyNx3fmSaY6M3HQ62hLJq
+nAKPDFlZYfX98CxB5Krha3ktWa4m56WCzsQQoNmmct3P/yB7tIirDRnjqrzXXoyQ
+XLf5lR6kyJ0Bexgllry3WnGG/UVJk4/fcqn/l7ot8z8l5SlA8Sa+goWEf4Y7DDYF
+GYZI2ZTAlujP8ALSCSShm/tVSr3P+PFo58CF2R4yKBZiCRhXn3ff/vzT+RNc96oZ
+6GLHfwQkwRWJD3wrgWUlIkyLtGTq0VyzcKLEVcLSELGGj6EcXXR99oX2LVxBwn9v
+olQVVr8F5ZJ8EyPzQ0gAJBIWc48BSNWC5raRz99f4Z10L/5eLKZar+k91t+V7nT9
+1PuVhqgorBCGjWlA4UVShlim9oVQY4VLD53rS9NGI+AvYsGVFpHwIN/a4m3M+7fe
+SCCt3Aa3Mv57T/9ms2js1oPYh4jepe0Qj9qgz69WJMN92qka2AA=
+=+wqn
+-----END PGP SIGNATURE-----

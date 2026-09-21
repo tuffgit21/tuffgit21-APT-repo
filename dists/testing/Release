@@ -1,0 +1,18 @@
+Origin: tuffgit21 APT Repo
+Label: tuffgit21
+Suite: testing
+Codename: testing
+Version: 1.0
+Architectures: amd64 all
+Components: main
+Description: Testing - upcoming/pre-release packages (Not recommended)
+Date: Mon, 21 Sep 2026 14:59:36 UTC
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ d3076b82f8dcd7f9c611c2766fd69e65 29 main/binary-amd64/Packages.gz
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 239053a5b19ddb46718104794397355e1bfabbc9 29 main/binary-amd64/Packages.gz
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ fe9412bf233f3eb34f317966c5cbb36e143c254b2488d1283c543b68045b1d18 29 main/binary-amd64/Packages.gz

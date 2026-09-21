@@ -14,47 +14,174 @@
     </header>
 
     <div class="container">
-        <h2>Repository setup</h2>
-        <p class="muted">Signed <span class="badge">InRelease</span> <span class="badge">Release.gpg</span> — fingerprint <code>38A975C0 7DA0CB7C 82484843 B88AE409 4A478224</code></p>
-        <pre><code>curl -fsSL https://tuffgit21.github.io/tuffgit21-APT-repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/tuffgit21.gpg
+        <nav class="sec-nav" aria-label="Sections">
+            <a href="#sec-setup">Setup</a>
+            <a href="#sec-suites">Suites</a>
+            <a href="#sec-browse">Browse</a>
+            <a href="#sec-pool">Pool</a>
+            <a href="#sec-packages" class="active">Packages</a>
+        </nav>
+        <p class="muted" style="margin:0.4rem 0 0;">Jump to section — most are collapsed for a shorter page. First visit shows only <strong>Setup + Suites</strong>.</p>
+
+        <!-- Setup: only stable instructions visible by default -->
+        <details class="section" id="sec-setup" open>
+            <summary><h2>Repository setup — stable <span class="badge badge-ok">Recommended</span></h2></summary>
+            <div class="section-body">
+                <p class="muted">Signed <span class="badge">InRelease</span> <span class="badge">Release.gpg</span> — fingerprint <code>38A975C0 7DA0CB7C 82484843 B88AE409 4A478224</code></p>
+                <pre><code>curl -fsSL https://tuffgit21.github.io/tuffgit21-APT-repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/tuffgit21.gpg
 echo "deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21.list
 sudo apt update
 sudo apt install pyshell   # example</code></pre>
-        <p class="muted">Unsigned fallback: <code>deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main</code> · <a href="./public.key">public.key</a> · <a href="./tuffgit21.gpg">tuffgit21.gpg</a> · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">GitHub</a></p>
-
-        <h2>Index of /</h2>
-        <div class="table-wrap"><table class="index">
-            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
-            <tbody>
-                <tr><td><span class="icon">📁</span><a href="./dists/">dists/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Release, InRelease, Packages</td></tr>
-                <tr><td><span class="icon">📁</span><a href="./pool/">pool/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Deb archives</td></tr>
-                <tr><td><span class="icon">🔑</span><a href="./public.key">public.key</a></td><td>2026-09-20 15:54</td><td class="size">3.9K</td><td>ASCII armored public key</td></tr>
-                <tr><td><span class="icon">🔑</span><a href="./tuffgit21.gpg">tuffgit21.gpg</a></td><td>2026-09-20 15:54</td><td class="size">2.8K</td><td>dearmored keyring</td></tr>
-            </tbody>
-        </table></div>
-
-        <h2>Index of /dists/stable</h2>
-        <div class="table-wrap"><table class="index">
-            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
-            <tbody>
-                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release">Release</a></td><td>2026-09-20 16:03</td><td class="size">713 B</td><td>Checksums</td></tr>
-                <tr><td><span class="icon">📄</span><a href="./dists/stable/InRelease">InRelease</a></td><td>2026-09-20 16:03</td><td class="size">1.6K</td><td>Clearsigned Release</td></tr>
-                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release.gpg">Release.gpg</a></td><td>2026-09-20 16:03</td><td class="size">833 B</td><td>Detached signature</td></tr>
-                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td><td>2026-09-20 16:03</td><td class="size">3.2K</td><td>amd64/all index</td></tr>
-                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>2026-09-20 16:03</td><td class="size">1.2K</td><td>Compressed index</td></tr>
-            </tbody>
-        </table></div>
-
-        <h2>Index of /pool <button class="badge" id="poolToggle" type="button" style="cursor:pointer; margin-left:0.5rem; font-size:0.8rem;">View all 26 letters ▼</button></h2>
-        <div id="poolContainer" style="display:none;">
-            <div class="search-box">
-                <input type="search" id="poolSearch" placeholder="Filter by letter (a, d, l, p)..." aria-label="Filter pool letters">
-                <span class="count" id="poolCount">26 letters</span>
-                <button class="badge" id="poolClear" type="button" style="cursor:pointer;">Clear</button>
+                <p class="muted">Unsigned fallback: <code>deb [trusted=yes] https://tuffgit21.github.io/tuffgit21-APT-repo stable main</code> · <a href="./public.key">public.key</a> · <a href="./tuffgit21.gpg">tuffgit21.gpg</a> · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">GitHub</a></p>
             </div>
-            <div class="table-wrap"><table class="index" id="poolTable">
-                <thead><tr><th>Name</th></tr></thead>
-                <tbody>
+        </details>
+
+        <!-- Suites overview -->
+        <details class="section" id="sec-suites" open>
+            <summary><h2>Suites (distributions) <span class="muted" style="font-weight:400; font-size:0.85rem;">— opt-in collapsed</span></h2></summary>
+            <div class="section-body">
+                <p class="muted">Stable is enabled by default. The other three suites are <strong>opt-in</strong> — add them only if you need them.</p>
+                <div class="table-wrap"><table class="index">
+                    <thead><tr><th>Suite</th><th>Status</th><th>Description</th><th>Pool</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>stable</code></td><td><span class="badge badge-ok">Recommended</span></td><td>Actively maintained</td><td><code>pool/main/</code></td></tr>
+                        <tr><td><code>archives-stable</code></td><td><span class="badge badge-optional">Optional</span></td><td>Discontinued stable — still usable</td><td><code>pool/archives-stable/main/</code></td></tr>
+                        <tr><td><code>archives-unstable</code></td><td><span class="badge badge-warn">Not recommended</span></td><td>Discontinued unstable / buggy</td><td><code>pool/archives-unstable/main/</code></td></tr>
+                        <tr><td><code>testing</code></td><td><span class="badge badge-warn">Not recommended</span></td><td>Upcoming / pre-release</td><td><code>pool/testing/main/</code></td></tr>
+                    </tbody>
+                </table></div>
+
+                <details>
+                    <summary style="cursor:pointer; font-weight:600; margin-top:0.8rem;">Opt-in suites — commands (optional, click to expand)</summary>
+                    <div class="callout callout-optional" style="margin-top:0.8rem;">
+                        <strong>archives-stable — discontinued stable</strong> <span class="badge badge-optional">Optional</span>
+                        <p>Legacy projects discontinued but last known stable. No further updates.</p>
+                        <pre><code>echo "deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo archives-stable main" | sudo tee /etc/apt/sources.list.d/tuffgit21-archives-stable.list
+sudo apt update</code></pre>
+                    </div>
+                    <div class="callout callout-warn">
+                        <strong>archives-unstable — discontinued unstable / buggy</strong> <span class="badge badge-warn">Not recommended</span>
+                        <p>May contain bugs/security issues. Opt-in only.</p>
+                        <pre><code>echo "deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo archives-unstable main" | sudo tee /etc/apt/sources.list.d/tuffgit21-archives-unstable.list
+sudo apt update</code></pre>
+                    </div>
+                    <div class="callout callout-warn">
+                        <strong>testing — upcoming</strong> <span class="badge badge-warn">Not recommended</span>
+                        <p>Pre-release, expect breakage. Pin low priority.</p>
+                        <pre><code>echo "deb [signed-by=/usr/share/keyrings/tuffgit21.gpg] https://tuffgit21.github.io/tuffgit21-APT-repo testing main" | sudo tee /etc/apt/sources.list.d/tuffgit21-testing.list
+sudo apt update</code></pre>
+                    </div>
+                    <p class="muted">Unsigned for any suite: replace <code>[signed-by=...]</code> with <code>[trusted=yes]</code>.</p>
+                </details>
+            </div>
+        </details>
+
+        <!-- Browse: dists + index -->
+        <details class="section" id="sec-browse">
+            <summary><h2>Browse repository</h2></summary>
+            <div class="section-body">
+                <h3 style="margin-top:0;">Index of /</h3>
+                <div class="table-wrap"><table class="index">
+                    <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="icon">📁</span><a href="./dists/">dists/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Release, InRelease, Packages (per suite)</td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./pool/">pool/</a></td><td>2026-09-20 16:03</td><td class="size">-</td><td>Deb archives (per suite)</td></tr>
+                        <tr><td><span class="icon">🔑</span><a href="./public.key">public.key</a></td><td>2026-09-20 15:54</td><td class="size">3.9K</td><td>ASCII armored public key</td></tr>
+                        <tr><td><span class="icon">🔑</span><a href="./tuffgit21.gpg">tuffgit21.gpg</a></td><td>2026-09-20 15:54</td><td class="size">2.8K</td><td>dearmored keyring</td></tr>
+                    </tbody>
+                </table></div>
+
+                <h3>Index of /dists</h3>
+                <div class="table-wrap"><table class="index">
+                    <thead><tr><th>Suite</th><th>Description</th><th>Files</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="icon">📁</span><a href="./dists/stable/">stable/</a> <span class="badge badge-ok">Recommended</span></td><td>Stable</td><td><a href="./dists/stable/Release">Release</a> · <a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/archives-stable/">archives-stable/</a> <span class="badge badge-optional">Optional</span></td><td>Discontinued stable</td><td><a href="./dists/archives-stable/Release">Release</a> · <a href="./dists/archives-stable/main/binary-amd64/Packages">Packages</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/archives-unstable/">archives-unstable/</a> <span class="badge badge-warn">Not recommended</span></td><td>Unstable/buggy</td><td><a href="./dists/archives-unstable/Release">Release</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/testing/">testing/</a> <span class="badge badge-warn">Not recommended</span></td><td>Upcoming</td><td><a href="./dists/testing/Release">Release</a></td></tr>
+                    </tbody>
+                </table></div>
+
+                <!-- Dists detail tabs to avoid long page -->
+                <div class="tabs" id="distsTabs">
+                    <div class="tab-nav" role="tablist">
+                        <button class="tab-btn active" data-tab="dists-stable" role="tab" aria-selected="true">stable</button>
+                        <button class="tab-btn" data-tab="dists-archives-stable" role="tab">archives-stable</button>
+                        <button class="tab-btn" data-tab="dists-archives-unstable" role="tab">archives-unstable</button>
+                        <button class="tab-btn" data-tab="dists-testing" role="tab">testing</button>
+                    </div>
+                    <div id="dists-stable" class="tab-panel active">
+                        <h3 style="margin-top:0;">Index of /dists/stable</h3>
+                        <div class="table-wrap"><table class="index">
+                            <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release">Release</a></td><td>2026-09-20 16:03</td><td class="size">713 B</td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/InRelease">InRelease</a></td><td>2026-09-20 16:03</td><td class="size">1.6K</td><td>Clearsigned</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release.gpg">Release.gpg</a></td><td>2026-09-20 16:03</td><td class="size">833 B</td><td>Detached</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td><td>2026-09-20 16:03</td><td class="size">3.2K</td><td>amd64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>2026-09-20 16:03</td><td class="size">1.2K</td><td>Compressed</td></tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+                    <div id="dists-archives-stable" class="tab-panel">
+                        <h3 style="margin-top:0;">Index of /dists/archives-stable <span class="badge badge-optional">Optional</span></h3>
+                        <div class="table-wrap"><table class="index">
+                            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/Release">Release</a></td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/InRelease">InRelease</a></td><td>Clearsigned</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/Release.gpg">Release.gpg</a></td><td>Detached</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-amd64/Packages">Packages</a></td><td>amd64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed</td></tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+                    <div id="dists-archives-unstable" class="tab-panel">
+                        <h3 style="margin-top:0;">Index of /dists/archives-unstable <span class="badge badge-warn">Not recommended</span></h3>
+                        <div class="table-wrap"><table class="index">
+                            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/Release">Release</a></td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/InRelease">InRelease</a></td><td>Clearsigned</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/Release.gpg">Release.gpg</a></td><td>Detached</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-amd64/Packages">Packages</a></td><td>amd64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed</td></tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+                    <div id="dists-testing" class="tab-panel">
+                        <h3 style="margin-top:0;">Index of /dists/testing <span class="badge badge-warn">Not recommended</span></h3>
+                        <div class="table-wrap"><table class="index">
+                            <thead><tr><th>Name</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/Release">Release</a></td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/InRelease">InRelease</a></td><td>Clearsigned</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/Release.gpg">Release.gpg</a></td><td>Detached</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-amd64/Packages">Packages</a></td><td>amd64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed</td></tr>
+                            </tbody>
+                        </table></div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <!-- Pool -->
+        <details class="section" id="sec-pool">
+            <summary><h2>Pool — browse letters</h2></summary>
+            <div class="section-body">
+                <p class="muted">Stable: <code>pool/main/</code> · Archives stable: <code>pool/archives-stable/main/</code> · Archives unstable: <code>pool/archives-unstable/main/</code> · Testing: <code>pool/testing/main/</code></p>
+                <p class="muted"><a href="./pool/">pool/</a> lists all suites → <a href="./pool/main/">main/</a> · <a href="./pool/archives-stable/">archives-stable/</a> · <a href="./pool/archives-unstable/">archives-unstable/</a> · <a href="./pool/testing/">testing/</a></p>
+                <h3 style="margin-top:0.6rem;">Index of /pool/main <button class="badge" id="poolToggle" type="button" style="cursor:pointer; margin-left:0.5rem; font-size:0.8rem;">View all 26 letters ▼</button></h3>
+                <div id="poolContainer" style="display:none;">
+                    <div class="search-box">
+                        <input type="search" id="poolSearch" placeholder="Filter by letter (a, d, l, p)..." aria-label="Filter pool letters">
+                        <span class="count" id="poolCount">26 letters</span>
+                        <button class="badge" id="poolClear" type="button" style="cursor:pointer;">Clear</button>
+                    </div>
+                    <div class="table-wrap"><table class="index" id="poolTable">
+                        <thead><tr><th>Name</th></tr></thead>
+                        <tbody>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/a/a.html">a/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/b/b.html">b/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/c/c.html">c/</a></td></tr>
@@ -82,27 +209,93 @@ sudo apt install pyshell   # example</code></pre>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/y/y.html">y/</a></td></tr>
                 <tr><td><span class="icon">📁</span><a href="./pool/main/z/z.html">z/</a></td></tr>
             </tbody>
-            </table></div>
-            <p id="poolNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No letters found for "<span id="poolQuery"></span>".</p>
-        </div>
+                    </table></div>
+                    <p id="poolNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No letters found for "<span id="poolQuery"></span>".</p>
+                </div>
+            </div>
+        </details>
 
-        <h2>Packages in pool</h2>
-        <div class="search-box">
-            <input type="search" id="pkgSearch" placeholder="Search packages (name, version, arch, file)..." aria-label="Search packages">
-            <span class="count" id="pkgCount">9 packages</span>
-            <button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button>
-        </div>
-        <div class="table-wrap"><table class="index" id="pkgTable">
-            <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
-            <tbody>
+        <!-- Packages: tabbed to reduce length from 4 stacked tables to 1 visible -->
+        <details class="section" id="sec-packages" open>
+            <summary><h2>Packages — 4 suites in tabs</h2></summary>
+            <div class="section-body">
+                <div class="tabs" id="pkgTabs">
+                    <div class="tab-nav" role="tablist" aria-label="Package suites">
+                        <button class="tab-btn active" data-tab="pkg-stable" role="tab" aria-selected="true">stable <span class="badge badge-ok" id="tabCount-stable">5</span></button>
+                        <button class="tab-btn" data-tab="pkg-archives-stable" role="tab">archives-stable <span class="badge badge-optional" id="tabCount-archives-stable">0</span></button>
+                        <button class="tab-btn" data-tab="pkg-archives-unstable" role="tab">archives-unstable <span class="badge badge-warn" id="tabCount-archives-unstable">0</span></button>
+                        <button class="tab-btn" data-tab="pkg-testing" role="tab">testing <span class="badge badge-warn" id="tabCount-testing">0</span></button>
+                    </div>
+
+                    <div id="pkg-stable" class="tab-panel active">
+                        <div class="search-box">
+                            <input type="search" id="pkgSearch" placeholder="Search packages (name, version, arch, file)..." aria-label="Search packages">
+                            <span class="count" id="pkgCount">5 packages</span>
+                            <button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button>
+                        </div>
+                        <div class="table-wrap"><table class="index" id="pkgTable">
+                            <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
+                            <tbody>
                 <tr><td><code>debian-app-builder</code></td><td>3.0</td><td>amd64</td><td><a href="./pool/main/d/debappbuilder/debian-app-builder_3.0_amd64.deb">debian-app-builder_3.0_amd64.deb</a> <span class="muted">822.7K</span></td></tr>
                 <tr><td><code>LightCalc</code></td><td>2.0-release</td><td>amd64</td><td><a href="./pool/main/l/lightcalc/LightCalc_2.0-release_amd64.deb">LightCalc_2.0-release_amd64.deb</a> <span class="muted">581.6K</span></td></tr>
                 <tr><td><code>passgencli</code></td><td>1.8</td><td>all</td><td><a href="./pool/main/p/passgencli/passgencli.deb">passgencli.deb</a> <span class="muted">2.4K</span></td></tr>
                 <tr><td><code>passgengui</code></td><td>1.8</td><td>all</td><td><a href="./pool/main/p/passgengui/passgengui.deb">passgengui.deb</a> <span class="muted">2.6K</span></td></tr>
                 <tr><td><code>pyshell</code></td><td>1.0.0</td><td>all</td><td><a href="./pool/main/p/pyshell/pyshell_1.0.0_all.deb">pyshell_1.0.0_all.deb</a> <span class="muted">125.2K</span></td></tr>
             </tbody>
-        </table></div>
-        <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
+                        </table></div>
+                        <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
+                    </div>
+
+                    <div id="pkg-archives-stable" class="tab-panel">
+                        <p class="muted"><span class="badge badge-optional">Optional</span> discontinued stable — <code>pool/archives-stable/main/</code> · <a href="./pool/archives-stable/main/">browse</a> · <a href="./dists/archives-stable/main/binary-amd64/Packages">Packages</a></p>
+                        <div class="search-box">
+                            <input type="search" id="pkgSearch-archives-stable" placeholder="Search archives-stable..." aria-label="Search archives-stable">
+                            <span class="count" id="pkgCount-archives-stable">0 packages</span>
+                            <button class="badge" id="pkgClear-archives-stable" type="button" style="cursor:pointer;">Clear</button>
+                        </div>
+                        <div class="table-wrap"><table class="index" id="pkgTable-archives-stable">
+                            <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
+                            <tbody>
+                <tr><td colspan="4" class="muted">No packages yet — add .deb to pool/archives-stable/main/</td></tr>
+            </tbody>
+                        </table></div>
+                        <p id="pkgNoResults-archives-stable" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery-archives-stable"></span>".</p>
+                    </div>
+
+                    <div id="pkg-archives-unstable" class="tab-panel">
+                        <p class="muted"><span class="badge badge-warn">Not recommended</span> discontinued unstable — <code>pool/archives-unstable/main/</code> · <a href="./pool/archives-unstable/main/">browse</a></p>
+                        <div class="search-box">
+                            <input type="search" id="pkgSearch-archives-unstable" placeholder="Search archives-unstable..." aria-label="Search archives-unstable">
+                            <span class="count" id="pkgCount-archives-unstable">0 packages</span>
+                            <button class="badge" id="pkgClear-archives-unstable" type="button" style="cursor:pointer;">Clear</button>
+                        </div>
+                        <div class="table-wrap"><table class="index" id="pkgTable-archives-unstable">
+                            <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
+                            <tbody>
+                <tr><td colspan="4" class="muted">No packages yet — add .deb to pool/archives-unstable/main/</td></tr>
+            </tbody>
+                        </table></div>
+                        <p id="pkgNoResults-archives-unstable" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery-archives-unstable"></span>".</p>
+                    </div>
+
+                    <div id="pkg-testing" class="tab-panel">
+                        <p class="muted"><span class="badge badge-warn">Not recommended</span> upcoming — <code>pool/testing/main/</code> · <a href="./pool/testing/main/">browse</a></p>
+                        <div class="search-box">
+                            <input type="search" id="pkgSearch-testing" placeholder="Search testing..." aria-label="Search testing">
+                            <span class="count" id="pkgCount-testing">0 packages</span>
+                            <button class="badge" id="pkgClear-testing" type="button" style="cursor:pointer;">Clear</button>
+                        </div>
+                        <div class="table-wrap"><table class="index" id="pkgTable-testing">
+                            <thead><tr><th>Package</th><th>Version</th><th>Arch</th><th>File</th></tr></thead>
+                            <tbody>
+                <tr><td colspan="4" class="muted">No packages yet — add .deb to pool/testing/main/</td></tr>
+            </tbody>
+                        </table></div>
+                        <p id="pkgNoResults-testing" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery-testing"></span>".</p>
+                    </div>
+                </div>
+            </div>
+        </details>
 
         <div class="footer">
             tuffgit21 APT Repository · <a href="https://github.com/tuffgit21/tuffgit21-APT-repo">View on GitHub</a> · Served via GitHub Pages
@@ -129,6 +322,65 @@ sudo apt install pyshell   # example</code></pre>
             if(!localStorage.getItem(k)) apply(null);
         });
     })();
+    // section nav: smooth scroll + open details, highlight active
+    (function(){
+        const nav=document.querySelector('.sec-nav');
+        if(!nav) return;
+        const links=[...nav.querySelectorAll('a')];
+        const secs=links.map(a=> document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        function setActive(id){
+            links.forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+        }
+        links.forEach(a=>{
+            a.addEventListener('click', e=>{
+                const id=a.getAttribute('href').slice(1);
+                const sec=document.getElementById(id);
+                if(sec && sec.tagName==='DETAILS' && !sec.open) sec.open=true;
+                setActive(id);
+            });
+        });
+        // persist open state
+        const KEY='tuffgit21-sections';
+        try{
+            const saved=JSON.parse(localStorage.getItem(KEY)||'null');
+            if(saved) secs.forEach(s=>{ if(saved[s.id]!==undefined) s.open=!!saved[s.id]; });
+        }catch(e){}
+        secs.forEach(s=> s.addEventListener('toggle', ()=>{
+            try{
+                const cur=JSON.parse(localStorage.getItem(KEY)||'{}');
+                cur[s.id]=s.open;
+                localStorage.setItem(KEY, JSON.stringify(cur));
+            }catch(e){}
+        }));
+        // intersection observer for nav highlight
+        if('IntersectionObserver' in window){
+            const io=new IntersectionObserver(entries=>{
+                entries.forEach(ent=>{
+                    if(ent.isIntersecting) setActive(ent.target.id);
+                });
+            }, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+            secs.forEach(s=> io.observe(s));
+        }
+    })();
+    // generic tabs helper
+    function initTabs(rootId){
+        const root=document.getElementById(rootId);
+        if(!root) return;
+        const btns=[...root.querySelectorAll('.tab-btn')];
+        const panels=[...root.querySelectorAll('.tab-panel')];
+        btns.forEach(btn=>{
+            btn.addEventListener('click', ()=>{
+                const id=btn.getAttribute('data-tab');
+                btns.forEach(b=>{ b.classList.toggle('active', b===btn); b.setAttribute('aria-selected', b===btn ? 'true':'false'); });
+                panels.forEach(p=> p.classList.toggle('active', p.id===id));
+                // focus search inside new panel
+                const inp=document.querySelector('#'+id+' input[type="search"]');
+                if(inp) inp.focus();
+            });
+        });
+    }
+    initTabs('pkgTabs');
+    initTabs('distsTabs');
     (function(){
         const q=document.getElementById('pkgSearch');
         const c=document.getElementById('pkgCount');
@@ -137,7 +389,9 @@ sudo apt install pyshell   # example</code></pre>
         const no=document.getElementById('pkgNoResults');
         const qSpan=document.getElementById('pkgQuery');
         if(!q||!tbl) return;
-        const rows=[...tbl.tBodies[0].rows];
+        const allRows=[...tbl.tBodies[0].rows];
+        const placeholderRows=allRows.filter(r=> r.querySelector('td[colspan]') || r.textContent.includes('No packages yet'));
+        const rows=allRows.filter(r=> !r.querySelector('td[colspan]') && !r.textContent.includes('No packages yet'));
         function filter(){
             const s=q.value.trim().toLowerCase();
             let vis=0;
@@ -147,9 +401,13 @@ sudo apt install pyshell   # example</code></pre>
                 r.style.display=ok?'':'none';
                 if(ok) vis++;
             });
+            placeholderRows.forEach(r=> r.style.display = (rows.length===0 && !s) ? '' : 'none');
             c.textContent = vis + ' / ' + rows.length + ' packages' + (s ? ' for "'+q.value+'"' : '');
+            const cntTab=document.getElementById('tabCount-stable');
+            if(cntTab) cntTab.textContent = vis + (s ? ' / '+rows.length : '');
             const empty = s && vis===0;
-            tbl.style.display = empty ? 'none' : '';
+            if(rows.length===0 && !s) tbl.style.display='';
+            else tbl.style.display = empty ? 'none' : '';
             if(no){
                 no.style.display = empty ? 'block' : 'none';
                 if(qSpan) qSpan.textContent = q.value;
@@ -157,11 +415,52 @@ sudo apt install pyshell   # example</code></pre>
         }
         q.addEventListener('input', filter);
         clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
-        // deep-link ?q=
         const u=new URLSearchParams(location.search);
-        if(u.get('q')){ q.value=u.get('q'); filter(); }
+        if(u.get('q')){ q.value=u.get('q'); filter(); // also open packages section
+            const sec=document.getElementById('sec-packages'); if(sec) sec.open=true;
+            const tabBtn=document.querySelector('[data-tab="pkg-stable"]'); if(tabBtn) tabBtn.click();
+        }
         filter();
     })();
+    function bindFilter(suffix){
+        const q=document.getElementById('pkgSearch-'+suffix);
+        const c=document.getElementById('pkgCount-'+suffix);
+        const clear=document.getElementById('pkgClear-'+suffix);
+        const tbl=document.getElementById('pkgTable-'+suffix);
+        const no=document.getElementById('pkgNoResults-'+suffix);
+        const qSpan=document.getElementById('pkgQuery-'+suffix);
+        if(!q||!tbl) return;
+        const allRows=[...tbl.tBodies[0].rows];
+        const placeholderRows=allRows.filter(r=> r.querySelector('td[colspan]') || r.textContent.includes('No packages yet'));
+        const rows=allRows.filter(r=> !r.querySelector('td[colspan]') && !r.textContent.includes('No packages yet'));
+        function filter(){
+            const s=q.value.trim().toLowerCase();
+            let vis=0;
+            rows.forEach(r=>{
+                const txt=r.textContent.toLowerCase();
+                const ok=!s || txt.includes(s);
+                r.style.display=ok?'':'none';
+                if(ok) vis++;
+            });
+            placeholderRows.forEach(r=> r.style.display = (rows.length===0 && !s) ? '' : 'none');
+            if(c) c.textContent = vis + ' / ' + rows.length + ' packages' + (s ? ' for "'+q.value+'"' : '');
+            const tabCnt=document.getElementById('tabCount-'+suffix);
+            if(tabCnt) tabCnt.textContent = vis + (s ? ' / '+rows.length : '');
+            const empty = s && vis===0;
+            if(rows.length===0 && !s) tbl.style.display='';
+            else tbl.style.display = empty ? 'none' : '';
+            if(no){
+                no.style.display = empty ? 'block' : 'none';
+                if(qSpan) qSpan.textContent = q.value;
+            }
+        }
+        q.addEventListener('input', filter);
+        if(clear) clear.addEventListener('click', ()=>{ q.value=''; filter(); q.focus(); });
+        filter();
+    }
+    bindFilter('archives-stable');
+    bindFilter('archives-unstable');
+    bindFilter('testing');
     (function(){
         const q=document.getElementById('poolSearch');
         const c=document.getElementById('poolCount');
