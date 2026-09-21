@@ -18,6 +18,7 @@
 }
 * { box-sizing: border-box; }
 html {
+    scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
     color-scheme: light;

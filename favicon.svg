@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="tuffgit21 APT favicon">
+  <title>tuffgit21 APT</title>
+  <!-- Background rounded rect Debian red -->
+  <rect x="0" y="0" width="100" height="100" rx="22" ry="22" fill="#A80030"/>
+  <!-- Package/box icon in white -->
+  <g fill="none" stroke="white" stroke-linejoin="round" stroke-linecap="round">
+    <!-- box top -->
+    <path d="M 50 18 L 74 30 L 50 42 L 26 30 Z" fill="white" stroke="white" stroke-width="2.2"/>
+    <!-- box front left -->
+    <path d="M 26 30 L 50 42 L 50 71 L 26 59 Z" fill="#fff" fill-opacity="0.95" stroke="white" stroke-width="2.2"/>
+    <!-- box front right -->
+    <path d="M 50 42 L 74 30 L 74 59 L 50 71 Z" fill="white" fill-opacity="0.92" stroke="white" stroke-width="2.2"/>
+    <!-- tape/seal on top -->
+    <path d="M 44 28 L 50 31 L 56 28 L 56 36 L 50 39 L 44 36 Z" fill="#A80030" stroke="white" stroke-width="1.4"/>
+  </g>
+  <!-- APT text -->
+  <text x="50" y="88" text-anchor="middle" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" font-weight="800" fill="white" letter-spacing="1.2">APT</text>
+</svg>

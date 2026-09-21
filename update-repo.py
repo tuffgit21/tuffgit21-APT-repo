@@ -374,12 +374,20 @@ def update_html(all_infos):
             empty_marker = "" if has_pkg else '\n        <p class="muted"><em>empty</em></p>'
             # suite name for title
             suite_title = url_prefix
+            fav_p = css_rel.replace('styles.css','')
             html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /{suite_title}/{letter} - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="{fav_p}favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="{fav_p}favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{fav_p}favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{fav_p}apple-touch-icon.png">
+    <link rel="shortcut icon" href="{fav_p}favicon.ico">
+    <link rel="manifest" href="{fav_p}manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="{css_rel}">
 </head>
 <body>
@@ -485,12 +493,20 @@ def update_html(all_infos):
                     css_app = "../../../../styles.css"
                     back_app = "../../../../index.html"
                 suite_title = url_prefix
+                fav_app = css_app.replace('styles.css','')
                 a_html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /{suite_title}/{letter}/{app.name} - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="{fav_app}favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="{fav_app}favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{fav_app}favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{fav_app}apple-touch-icon.png">
+    <link rel="shortcut icon" href="{fav_app}favicon.ico">
+    <link rel="manifest" href="{fav_app}manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="{css_app}">
 </head>
 <body>
@@ -585,6 +601,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /pool - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -674,6 +697,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /pool/{suite} - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
@@ -766,6 +796,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /pool/{suite}/main - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="manifest" href="../../../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../../../styles.css">
 </head>
 <body>
@@ -859,6 +896,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /pool/main - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
@@ -961,6 +1005,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /dists/{suite} - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="manifest" href="../../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../../styles.css">
 </head>
 <body>
@@ -1049,6 +1100,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /dists/{suite}/main - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="manifest" href="../../../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../../../styles.css">
 </head>
 <body>
@@ -1132,6 +1190,13 @@ def update_html(all_infos):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /dists/{suite}/main/binary-amd64 - tuffgit21 APT</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../../favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../../apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <link rel="manifest" href="../../../../manifest.json">
+    <meta name="theme-color" content="#A80030">
     <link rel="stylesheet" href="../../../../styles.css">
 </head>
 <body>

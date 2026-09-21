@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index of /tuffgit21-APT-repo - tuffgit21 APT Repository</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#A80030">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="tuffgit21 APT">
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -501,6 +511,28 @@ sudo apt update</code></pre>
             });
         }
     })();
+    </script>
+    <script>
+    // PWA install — register service worker for Android (standalone)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js', {scope: './'}).then(reg => {
+          reg.addEventListener('updatefound', () => {
+            const w = reg.installing;
+            if (w) w.addEventListener('statechange', () => {
+              if (w.state === 'installed' && navigator.serviceWorker.controller) {
+                console.log('tuffgit21 APT: new content available, will activate on next load');
+                // Optionally prompt user: w.postMessage('skipWaiting')
+              }
+            });
+          });
+        }).catch(err => console.warn('SW registration failed:', err));
+      });
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) { refreshing = true; window.location.reload(); }
+      });
+    }
     </script>
 </body>
 </html>
