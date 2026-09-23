@@ -6,32 +6,38 @@ Label: tuffgit21
 Suite: archives-unstable
 Codename: archives-unstable
 Version: 1.0
-Architectures: amd64 all
+Architectures: amd64 arm64 all
 Components: main
 Description: Archives Unstable - discontinued unstable/buggy projects (Not recommended)
-Date: Mon, 21 Sep 2026 15:25:23 UTC
+Date: Wed, 23 Sep 2026 14:28:21 UTC
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 30ec44e1ee0584004deb221e1fe796a0 29 main/binary-amd64/Packages.gz
+ 200ef3ce92a2d5f7deddfb2323c7e4a5 29 main/binary-amd64/Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
+ 200ef3ce92a2d5f7deddfb2323c7e4a5 29 main/binary-arm64/Packages.gz
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- 6d98d7b694c089069477600a8c2b6ba939c6f36f 29 main/binary-amd64/Packages.gz
+ 6a308f4e47fe424e480052eafd410f2ec9df402f 29 main/binary-amd64/Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
+ 6a308f4e47fe424e480052eafd410f2ec9df402f 29 main/binary-arm64/Packages.gz
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- 1f28d3fa01444ea4193b2bba6ed8fed0ad9b7f9c778785e03c4eb756244a9aa6 29 main/binary-amd64/Packages.gz
+ acc6723793f58c2e3888cfc6436cf62467a63daf7473481be35618e44ca7725c 29 main/binary-amd64/Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
+ acc6723793f58c2e3888cfc6436cf62467a63daf7473481be35618e44ca7725c 29 main/binary-arm64/Packages.gz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqxTGQACgkQEt1LWjHi
-/+A+GxAAm/rhut4vGt2e9yitTd67CxUquELTp1KeVPykJl8eVPgNZXVtoM3zngYb
-QMQtaEfoyJ0yHmJM1OzmrgeD+U72cGUoxlQNWoD7sJbEdMsAVLUHjj121Xr/wU4M
-4W0dwnkKjyDgRtHxTTYiB2rID3x5SMN+AJAY02WK1ACvIAowSG4S7DAlghU1xaef
-FkNvaCZAthA35MfpNN2U9aafT4fMjS2w6Cbp632EFeAQn05B5vUsfkRPwPikOb7Q
-r2p/POplz5y6U46zYXCYJhTFKrAQiJXtUeCS1m+aFLqeF+QUp1AG8i9x8s+GeqyB
-0fFyl7ekKyBnw1w6aBEpg3yDewqDovw3snsgSN1SwjyVtYpUY6SPoOLv1lqzyHav
-mZ9mEye8CjpzjlC1pdayMrJMyd9DStyJNFAjMbjlyijnsCvXP8TKh2KUnB/CUFAf
-z1KUnT84opBO3sst6TqnhL1lPwg5dYX6cdnCNLD8VeP/mp+UxssPl8c6CGPd1sqC
-vyoELebiRWctxXkUunh9nngu9GTuyiiBf3StvMQh0l5HTvHvEheysPCDw4Q+WMY2
-/kVap1MQ/VMzLBcmrAhHqPeEKSyuL+8BbNdHkZ0VxoBtto+fr2ycaguD4T/tdhCt
-TG/ybN/SfwXjc0OSB3MauIIRiq6TX1jaeml0yUKyO2ehf07oV8c=
-=W0Ub
+iQIzBAEBCAAdFiEEVFKrx0daw8SwkdQsEt1LWjHi/+AFAmqz4gYACgkQEt1LWjHi
+/+A3gg//W6flXonpsKQemqDIatKk9EoGPPTz24ONzHSQUsQHt7wlWGKU8NDcvnhe
+NIfBrNr05+BfTdMMrguq59mhGTfm2ADwHP+CPqnEq/R90SWUOAqe9cE0mfKoJ1B2
+Y8nVEbU5+wVWiEZJ/y9+e/8eQNJrDV2rc41QGzhgfCKZs174nQTlH8h+5LMHFrxk
+/LWxFkgWOemdwZrZYZCCcSSZMQpRaMq1oTZhsw0frCFsxB1VUrDtScZGHeQ2fr2P
+XuhOfMrE9XYVYQiSShS3bV8cEXV5K80r8z9YXeVsST2gF5NBlC2wIhcm3AMK0c1v
+UMd1oRhyMueute+uisvpJM8Y7AztREwZQ7+bSCEOVTuWwd0q8fZE6oAKZur2RamR
+GZXY2sdaxcRgJFeb2Ag5IJ8NC7HS6OxbfOrbr5et65Z9yyr4QMbdMRSyk8obYMej
+JYqxMoZw2sPM0KrfjFUZPKa8kJH2PJNOYsUkk9hhpjDxgKtVL6lMqqSdzoKcNFb2
+HGxXUhhvINPkvzN5VMUq6rmsmgO7gNbc+WryfmVdNEfvcardZ45BfipPzSXHk9BB
+L33n+cg5ToVm7B6ZNIl5FW875jpj6Pwx/gB4cTSvn2Nfz8sfYOdIJzdMHZEbcroV
+kf0fnDBq6WVZhEdFqKOXr56Vq0/9tVFXKawKKuEDfPzxIb9f5XE=
+=gaf6
 -----END PGP SIGNATURE-----

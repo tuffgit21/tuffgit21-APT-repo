@@ -3,16 +3,22 @@ Label: tuffgit21
 Suite: archives-stable
 Codename: archives-stable
 Version: 1.0
-Architectures: amd64 all
+Architectures: amd64 arm64 all
 Components: main
 Description: Archives Stable - discontinued stable projects (Optional, opt-in)
-Date: Mon, 21 Sep 2026 15:25:23 UTC
+Date: Wed, 23 Sep 2026 14:28:20 UTC
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 30ec44e1ee0584004deb221e1fe796a0 29 main/binary-amd64/Packages.gz
+ 1dfd693ffbdeb594b90cf761b5882745 29 main/binary-amd64/Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
+ 1dfd693ffbdeb594b90cf761b5882745 29 main/binary-arm64/Packages.gz
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- 6d98d7b694c089069477600a8c2b6ba939c6f36f 29 main/binary-amd64/Packages.gz
+ e840b4d5da17eb150829fc6d0e769ad6d0a8d80f 29 main/binary-amd64/Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
+ e840b4d5da17eb150829fc6d0e769ad6d0a8d80f 29 main/binary-arm64/Packages.gz
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- 1f28d3fa01444ea4193b2bba6ed8fed0ad9b7f9c778785e03c4eb756244a9aa6 29 main/binary-amd64/Packages.gz
+ abba99718899c7cfd856625a7c5c17e02e1dca73c13f4d6d94e05a56d46b9931 29 main/binary-amd64/Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
+ abba99718899c7cfd856625a7c5c17e02e1dca73c13f4d6d94e05a56d46b9931 29 main/binary-arm64/Packages.gz

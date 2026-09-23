@@ -1,0 +1,39 @@
+Package: passgencli
+Version: 1.8
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: tuffgit21 (Youssef)
+Depends: python3
+Description: PassGen CLI
+ A command line interface password generator.
+Filename: pool/main/p/passgencli/passgencli.deb
+Size: 2464
+MD5sum: 9eff2ebd53325eca828d8ae4ff72f04c
+SHA256: 55a8445bf300b8b3f0f460b1ea3a983ee44334fab55eb11e8efd3a98db610ed8
+
+Package: passgengui
+Version: 1.8
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: tuffgit21 (youssef)
+Depends: python3, python3-tk
+Description: PassGen GUI
+ A graphical password generator.
+Filename: pool/main/p/passgengui/passgengui.deb
+Size: 2628
+MD5sum: d7ad44ef440d5c4355b1d7dd12961df5
+SHA256: 575c643a97cea9e8e8cff6cc6dd2c43c24e7c047097061ba8928207c1c872b39
+
+Package: pyshell
+Version: 1.0.0
+Architecture: all
+Maintainer: tuffgit21 (Youssef)
+Depends: python3
+Description: A fast, Python-powered shell
+ Python Shell 
+Filename: pool/main/p/pyshell/pyshell_1.0.0_all.deb
+Size: 128168
+MD5sum: afaf4d306aa10ef3f92aea266a54cda8
+SHA256: 3a9b93dfdc0956351d4b34756f39ead66552b09f81eadc8d402811f920042743

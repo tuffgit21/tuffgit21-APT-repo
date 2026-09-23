@@ -3,16 +3,22 @@ Label: tuffgit21
 Suite: stable
 Codename: stable
 Version: 1.0
-Architectures: amd64 all
+Architectures: amd64 arm64 all
 Components: main
 Description: Stable - recommended, actively maintained
-Date: Mon, 21 Sep 2026 15:25:22 UTC
+Date: Wed, 23 Sep 2026 14:28:13 UTC
 MD5Sum:
  f194c28554bb6483c612146fca36ebd4 1897 main/binary-amd64/Packages
- b1be175dd443b13fd122d78c37a2c95c 856 main/binary-amd64/Packages.gz
+ e575c3de18490e096531905a084f6f91 856 main/binary-amd64/Packages.gz
+ 40141de466e7a7896a2935c66fd4faed 1092 main/binary-arm64/Packages
+ 21accc82f79a76accdb3f2ab2c63fb6d 544 main/binary-arm64/Packages.gz
 SHA1:
  55444a153b4b2762e570a49c7b987b99b3937674 1897 main/binary-amd64/Packages
- 8458579e4370563617c2cd1992488b8e457ebde6 856 main/binary-amd64/Packages.gz
+ 75db1a5049badef4729aa1e3c5b5636bcac0b285 856 main/binary-amd64/Packages.gz
+ 8ff64cf1cc3a978d3d3d2a800379a59eb6d6f514 1092 main/binary-arm64/Packages
+ b40ef4cfa58af830c9d7364f3ed71598c4226f6c 544 main/binary-arm64/Packages.gz
 SHA256:
  bd5777d04316066c23ebee15742a2f0234d02da5879997f749ee6e3fd8ea0189 1897 main/binary-amd64/Packages
- 9eb900a55adf4eca518ab87987f4cb073bef4387171979902ccc73279b98a229 856 main/binary-amd64/Packages.gz
+ 7d6e133e813c512f318229de6df87f52d012f31615faf730bc8cd23a75f6727f 856 main/binary-amd64/Packages.gz
+ 91c0d31b2c5a0a136243fdda78f55a75497515ea45b2643faf8040b7499b8ea4 1092 main/binary-arm64/Packages
+ 6ffb1eedf8fb98d2138e8c9f2af4deeebd804572d0ba3b892814594070478c32 544 main/binary-arm64/Packages.gz

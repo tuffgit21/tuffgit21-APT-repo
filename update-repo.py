@@ -14,9 +14,13 @@ GPG_BIN = os.environ.get("GPG_BIN") or (
     r"C:\Program Files\Git\usr\bin\gpg.exe" if os.path.exists(r"C:\Program Files\Git\usr\bin\gpg.exe") else "gpg"
 )
 
+# Supported Debian architectures - generates binary-<arch>/Packages for each
+SUPPORTED_ARCHES = ["amd64", "arm64"]
+RELEASE_ARCHES = "amd64 arm64 all"
+
 # Suite definitions
 # - pool: where .debs for this suite live
-# - dist: dists/<suite>/main/binary-amd64
+# - dist: legacy dists/<suite>/main/binary-amd64 (kept for backward compat, now auto-derived to main/)
 # - description: used in Release file
 # - badge: short label for HTML
 # - warning: optional warning text
@@ -128,11 +132,19 @@ def parse_deb_control(deb_path: pathlib.Path) -> dict:
     return fields
 
 def generate_suite(suite: str, cfg: dict):
-    """Generate Packages, Packages.gz and Release for a single suite."""
+    """Generate Packages, Packages.gz and Release for a single suite (multi-arch: amd64 + arm64)."""
     pool = cfg["pool"]
-    dist = cfg["dist"]
-    # ensure dirs exist
-    dist.mkdir(parents=True, exist_ok=True)
+    # Derive dists/main from legacy cfg["dist"] if present, else canonical
+    if "dist" in cfg and str(cfg["dist"]).endswith(("binary-amd64", "binary-arm64")):
+        dists_main = cfg["dist"].parent
+    else:
+        dists_main = REPO / "dists" / suite / "main"
+    # ensure dirs exist for each supported arch
+    for arch in SUPPORTED_ARCHES:
+        (dists_main / f"binary-{arch}").mkdir(parents=True, exist_ok=True)
+    # also keep legacy dist path for backward compat
+    if "dist" in cfg:
+        cfg["dist"].mkdir(parents=True, exist_ok=True)
     pool.mkdir(parents=True, exist_ok=True)
     # also ensure a-z letter dirs exist for browsing (empty placeholder)
     import string
@@ -142,7 +154,7 @@ def generate_suite(suite: str, cfg: dict):
     debs = sorted(pool.rglob("*.deb")) if pool.exists() else []
     print(f"[{suite}] Found {len(debs)} debs in {pool.relative_to(REPO) if pool.exists() else pool}")
 
-    entries = []
+    entries_per_arch = {arch: [] for arch in SUPPORTED_ARCHES}
     deb_infos = []  # for HTML
     for deb in debs:
         rel = deb.relative_to(REPO).as_posix()
@@ -163,15 +175,29 @@ def generate_suite(suite: str, cfg: dict):
         entry.append(f"Size: {size}")
         entry.append(f"MD5sum: {md5}")
         entry.append(f"SHA256: {sha256}")
-        entries.append("\n".join(entry))
-        print(f"  {rel} -> {fields.get('Package','?')} {fields.get('Version','?')}")
+        entry_text = "\n".join(entry)
+        print(f"  {rel} -> {fields.get('Package','?')} {fields.get('Version','?')} [{fields.get('Architecture','all')}]")
+        # Route entry to appropriate arch Packages
+        arch_field = fields.get("Architecture", "all")
+        if arch_field == "all":
+            for arch in SUPPORTED_ARCHES:
+                entries_per_arch[arch].append(entry_text)
+        elif arch_field in SUPPORTED_ARCHES:
+            entries_per_arch[arch_field].append(entry_text)
+        else:
+            # unknown arch (e.g. i386) — include in all arches for visibility
+            for arch in SUPPORTED_ARCHES:
+                entries_per_arch[arch].append(entry_text)
 
-    packages_text = "\n\n".join(entries) + ("\n" if entries else "")
-    (dist / "Packages").write_text(packages_text, encoding="utf-8", newline="\n")
-    with gzip.open(dist / "Packages.gz", "wb") as gz:
-        gz.write(packages_text.encode())
-    print(f"  Wrote {dist/'Packages'} ({len(packages_text)} bytes)")
-    print(f"  Wrote {dist/'Packages.gz'}")
+    # Write Packages per arch
+    for arch in SUPPORTED_ARCHES:
+        dist = dists_main / f"binary-{arch}"
+        packages_text = "\n\n".join(entries_per_arch[arch]) + ("\n" if entries_per_arch[arch] else "")
+        (dist / "Packages").write_text(packages_text, encoding="utf-8", newline="\n")
+        with gzip.open(dist / "Packages.gz", "wb") as gz:
+            gz.write(packages_text.encode())
+        print(f"  Wrote {dist/'Packages'} ({len(packages_text)} bytes, {len(entries_per_arch[arch])} entries)")
+        print(f"  Wrote {dist/'Packages.gz'}")
 
     # Release
     date_str = datetime.datetime.now(datetime.timezone.utc).strftime("%a, %d %b %Y %H:%M:%S UTC")
@@ -181,7 +207,7 @@ Label: tuffgit21
 Suite: {suite}
 Codename: {suite}
 Version: 1.0
-Architectures: amd64 all
+Architectures: {RELEASE_ARCHES}
 Components: main
 Description: {cfg['description']}
 Date: {date_str}
@@ -189,11 +215,13 @@ Date: {date_str}
     # Files relative to dists/<suite>
     dists_suite = REPO / "dists" / suite
     files = []
-    for rel in ["main/binary-amd64/Packages", "main/binary-amd64/Packages.gz"]:
-        full = dists_suite / rel
-        # ensure file exists (we just wrote it)
-        data = full.read_bytes() if full.exists() else b""
-        files.append((rel, data))
+    for arch in SUPPORTED_ARCHES:
+        for fname in ["Packages", "Packages.gz"]:
+            rel = f"main/binary-{arch}/{fname}"
+            full = dists_suite / rel
+            # ensure file exists (we just wrote it)
+            data = full.read_bytes() if full.exists() else b""
+            files.append((rel, data))
 
     release += "MD5Sum:\n"
     for rel, d in files:
@@ -1088,12 +1116,17 @@ def update_html(all_infos):
 '''
         suite_idx.write_text(suite_html, encoding="utf-8")
         (d / f"{suite}.html").write_text(suite_html, encoding="utf-8")
-        # dists/<suite>/main/index.html
+        # dists/<suite>/main/index.html - lists both archs
         main_dir = d / "main"
         main_dir.mkdir(parents=True, exist_ok=True)
-        bin_dir = main_dir / "binary-amd64"
-        bin_dir.mkdir(parents=True, exist_ok=True)
-        main_mtime_bin = _fmt_date(bin_dir.stat().st_mtime) if bin_dir.exists() else "-"
+        # ensure both arch dirs exist and build rows
+        arch_rows = []
+        for arch in SUPPORTED_ARCHES:
+            bin_dir_tmp = main_dir / f"binary-{arch}"
+            bin_dir_tmp.mkdir(parents=True, exist_ok=True)
+            mtime = _fmt_date(bin_dir_tmp.stat().st_mtime) if bin_dir_tmp.exists() else "-"
+            arch_rows.append(f'                <tr><td><span class="icon">📁</span><a href="binary-{arch}/">binary-{arch}/</a></td><td>{mtime}</td><td class="size">-</td><td>Binary packages ({arch})</td></tr>')
+        arch_rows_str = "\n".join(arch_rows)
         main_html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1121,7 +1154,7 @@ def update_html(all_infos):
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">⬆️</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
-                <tr><td><span class="icon">📁</span><a href="binary-amd64/">binary-amd64/</a></td><td>{main_mtime_bin}</td><td class="size">-</td><td>Binary packages</td></tr>
+{arch_rows_str}
             </tbody>
         </table></div>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
@@ -1179,17 +1212,20 @@ def update_html(all_infos):
 '''
         (main_dir / "index.html").write_text(main_html, encoding="utf-8")
         (main_dir / "main.html").write_text(main_html, encoding="utf-8")
-        # dists/<suite>/main/binary-amd64/index.html
-        pkg_path = bin_dir / "Packages"
-        pkg_gz_path = bin_dir / "Packages.gz"
-        pkg_date, pkg_size = f_info(pkg_path)
-        pkg_gz_date, pkg_gz_size = f_info(pkg_gz_path)
-        bin_html = f'''<!DOCTYPE html>
+        # dists/<suite>/main/binary-<arch>/index.html for each arch
+        for arch in SUPPORTED_ARCHES:
+            bin_dir = main_dir / f"binary-{arch}"
+            bin_dir.mkdir(parents=True, exist_ok=True)
+            pkg_path = bin_dir / "Packages"
+            pkg_gz_path = bin_dir / "Packages.gz"
+            pkg_date, pkg_size = f_info(pkg_path)
+            pkg_gz_date, pkg_gz_size = f_info(pkg_gz_path)
+            bin_html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index of /dists/{suite}/main/binary-amd64 - tuffgit21 APT</title>
+    <title>Index of /dists/{suite}/main/binary-{arch} - tuffgit21 APT</title>
     <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../../../../favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../../../favicon-16x16.png">
@@ -1201,7 +1237,7 @@ def update_html(all_infos):
 </head>
 <body>
     <header class="site-header">
-        <h1>Index of /dists/{suite}/main/binary-amd64 <span>— tuffgit21 APT</span></h1>
+        <h1>Index of /dists/{suite}/main/binary-{arch} <span>— tuffgit21 APT</span></h1>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
         <p><a href="../../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
     </header>
@@ -1211,7 +1247,7 @@ def update_html(all_infos):
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">⬆️</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
-                <tr><td><span class="icon">📄</span><a href="Packages">Packages</a></td><td>{pkg_date}</td><td class="size">{pkg_size}</td><td>amd64/all index</td></tr>
+                <tr><td><span class="icon">📄</span><a href="Packages">Packages</a></td><td>{pkg_date}</td><td class="size">{pkg_size}</td><td>{arch}/all index</td></tr>
                 <tr><td><span class="icon">📄</span><a href="Packages.gz">Packages.gz</a></td><td>{pkg_gz_date}</td><td class="size">{pkg_gz_size}</td><td>Compressed index</td></tr>
             </tbody>
         </table></div>
@@ -1268,9 +1304,9 @@ def update_html(all_infos):
 </body>
 </html>
 '''
-        (bin_dir / "index.html").write_text(bin_html, encoding="utf-8")
-        (bin_dir / "binary-amd64.html").write_text(bin_html, encoding="utf-8")
-        print(f"  Updated dists/{suite}/ browsable indexes")
+            (bin_dir / "index.html").write_text(bin_html, encoding="utf-8")
+            (bin_dir / f"binary-{arch}.html").write_text(bin_html, encoding="utf-8")
+        print(f"  Updated dists/{suite}/ browsable indexes (arches: {', '.join(SUPPORTED_ARCHES)})")
 
 if __name__ == "__main__":
     main()

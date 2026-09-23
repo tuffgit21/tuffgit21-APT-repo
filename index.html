@@ -105,10 +105,10 @@ sudo apt update</code></pre>
                 <div class="table-wrap"><table class="index">
                     <thead><tr><th>Suite</th><th>Description</th><th>Files</th></tr></thead>
                     <tbody>
-                        <tr><td><span class="icon">📁</span><a href="./dists/stable/">stable/</a> <span class="badge badge-ok">Recommended</span></td><td>Stable</td><td><a href="./dists/stable/Release">Release</a> · <a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td></tr>
-                        <tr><td><span class="icon">📁</span><a href="./dists/archives-stable/">archives-stable/</a> <span class="badge badge-optional">Optional</span></td><td>Discontinued stable</td><td><a href="./dists/archives-stable/Release">Release</a> · <a href="./dists/archives-stable/main/binary-amd64/Packages">Packages</a></td></tr>
-                        <tr><td><span class="icon">📁</span><a href="./dists/archives-unstable/">archives-unstable/</a> <span class="badge badge-warn">Not recommended</span></td><td>Unstable/buggy</td><td><a href="./dists/archives-unstable/Release">Release</a></td></tr>
-                        <tr><td><span class="icon">📁</span><a href="./dists/testing/">testing/</a> <span class="badge badge-warn">Not recommended</span></td><td>Upcoming</td><td><a href="./dists/testing/Release">Release</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/stable/">stable/</a> <span class="badge badge-ok">Recommended</span></td><td>Stable</td><td><a href="./dists/stable/Release">Release</a> · <a href="./dists/stable/main/binary-amd64/Packages">amd64 Packages</a> · <a href="./dists/stable/main/binary-arm64/Packages">arm64 Packages</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/archives-stable/">archives-stable/</a> <span class="badge badge-optional">Optional</span></td><td>Discontinued stable</td><td><a href="./dists/archives-stable/Release">Release</a> · <a href="./dists/archives-stable/main/binary-amd64/Packages">amd64</a> · <a href="./dists/archives-stable/main/binary-arm64/Packages">arm64</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/archives-unstable/">archives-unstable/</a> <span class="badge badge-warn">Not recommended</span></td><td>Unstable/buggy</td><td><a href="./dists/archives-unstable/Release">Release</a> · <a href="./dists/archives-unstable/main/binary-amd64/Packages">amd64</a> · <a href="./dists/archives-unstable/main/binary-arm64/Packages">arm64</a></td></tr>
+                        <tr><td><span class="icon">📁</span><a href="./dists/testing/">testing/</a> <span class="badge badge-warn">Not recommended</span></td><td>Upcoming</td><td><a href="./dists/testing/Release">Release</a> · <a href="./dists/testing/main/binary-amd64/Packages">amd64</a> · <a href="./dists/testing/main/binary-arm64/Packages">arm64</a></td></tr>
                     </tbody>
                 </table></div>
 
@@ -125,11 +125,13 @@ sudo apt update</code></pre>
                         <div class="table-wrap"><table class="index">
                             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
                             <tbody>
-                                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release">Release</a></td><td>2026-09-20 16:03</td><td class="size">713 B</td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/Release">Release</a></td><td>2026-09-20 16:03</td><td class="size">713 B</td><td>Checksums (amd64 arm64 all)</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/stable/InRelease">InRelease</a></td><td>2026-09-20 16:03</td><td class="size">1.6K</td><td>Clearsigned</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/stable/Release.gpg">Release.gpg</a></td><td>2026-09-20 16:03</td><td class="size">833 B</td><td>Detached</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages">Packages</a></td><td>2026-09-20 16:03</td><td class="size">3.2K</td><td>amd64/all</td></tr>
-                                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>2026-09-20 16:03</td><td class="size">1.2K</td><td>Compressed</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>2026-09-20 16:03</td><td class="size">1.2K</td><td>Compressed (amd64)</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-arm64/Packages">Packages</a></td><td>2026-09-23 17:28</td><td class="size">1.1K</td><td>arm64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/stable/main/binary-arm64/Packages.gz">Packages.gz</a></td><td>2026-09-23 17:28</td><td class="size">544 B</td><td>Compressed (arm64)</td></tr>
                             </tbody>
                         </table></div>
                     </div>
@@ -138,11 +140,13 @@ sudo apt update</code></pre>
                         <div class="table-wrap"><table class="index">
                             <thead><tr><th>Name</th><th>Description</th></tr></thead>
                             <tbody>
-                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/Release">Release</a></td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/Release">Release</a></td><td>Checksums (amd64 arm64 all)</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/InRelease">InRelease</a></td><td>Clearsigned</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/Release.gpg">Release.gpg</a></td><td>Detached</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-amd64/Packages">Packages</a></td><td>amd64/all</td></tr>
-                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed (amd64)</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-arm64/Packages">Packages</a></td><td>arm64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-stable/main/binary-arm64/Packages.gz">Packages.gz</a></td><td>Compressed (arm64)</td></tr>
                             </tbody>
                         </table></div>
                     </div>
@@ -151,11 +155,13 @@ sudo apt update</code></pre>
                         <div class="table-wrap"><table class="index">
                             <thead><tr><th>Name</th><th>Description</th></tr></thead>
                             <tbody>
-                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/Release">Release</a></td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/Release">Release</a></td><td>Checksums (amd64 arm64 all)</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/InRelease">InRelease</a></td><td>Clearsigned</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/Release.gpg">Release.gpg</a></td><td>Detached</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-amd64/Packages">Packages</a></td><td>amd64/all</td></tr>
-                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed (amd64)</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-arm64/Packages">Packages</a></td><td>arm64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/archives-unstable/main/binary-arm64/Packages.gz">Packages.gz</a></td><td>Compressed (arm64)</td></tr>
                             </tbody>
                         </table></div>
                     </div>
@@ -164,11 +170,13 @@ sudo apt update</code></pre>
                         <div class="table-wrap"><table class="index">
                             <thead><tr><th>Name</th><th>Description</th></tr></thead>
                             <tbody>
-                                <tr><td><span class="icon">📄</span><a href="./dists/testing/Release">Release</a></td><td>Checksums</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/Release">Release</a></td><td>Checksums (amd64 arm64 all)</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/testing/InRelease">InRelease</a></td><td>Clearsigned</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/testing/Release.gpg">Release.gpg</a></td><td>Detached</td></tr>
                                 <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-amd64/Packages">Packages</a></td><td>amd64/all</td></tr>
-                                <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-amd64/Packages.gz">Packages.gz</a></td><td>Compressed (amd64)</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-arm64/Packages">Packages</a></td><td>arm64/all</td></tr>
+                                <tr><td><span class="icon">📄</span><a href="./dists/testing/main/binary-arm64/Packages.gz">Packages.gz</a></td><td>Compressed (arm64)</td></tr>
                             </tbody>
                         </table></div>
                     </div>

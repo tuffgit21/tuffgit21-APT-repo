@@ -3,16 +3,22 @@ Label: tuffgit21
 Suite: testing
 Codename: testing
 Version: 1.0
-Architectures: amd64 all
+Architectures: amd64 arm64 all
 Components: main
 Description: Testing - upcoming/pre-release packages (Not recommended)
-Date: Mon, 21 Sep 2026 15:25:24 UTC
+Date: Wed, 23 Sep 2026 14:28:22 UTC
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 781de0894ea85882f62f624283d05078 29 main/binary-amd64/Packages.gz
+ 80a38b6d69904293d46f43b2d9cbcdfa 29 main/binary-amd64/Packages.gz
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
+ 80a38b6d69904293d46f43b2d9cbcdfa 29 main/binary-arm64/Packages.gz
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- 313cd04e38b14b7a98d85fa3b301f38d53160d94 29 main/binary-amd64/Packages.gz
+ 14dc63e4010e292a193270f2cd5613946b77ebab 29 main/binary-amd64/Packages.gz
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
+ 14dc63e4010e292a193270f2cd5613946b77ebab 29 main/binary-arm64/Packages.gz
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- a873397fccba9a59ae99ce498eb5dacb6cc1e41ce91e9e904e3e56e087b602de 29 main/binary-amd64/Packages.gz
+ 8e188a08d3c2b5b8a6e997030b728e4f4845fe5a04bf2ce5587e2f078bdd7395 29 main/binary-amd64/Packages.gz
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
+ 8e188a08d3c2b5b8a6e997030b728e4f4845fe5a04bf2ce5587e2f078bdd7395 29 main/binary-arm64/Packages.gz

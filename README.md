@@ -11,7 +11,7 @@ Debian APT repository hosted on GitHub Pages: `https://tuffgit21.github.io/tuffg
 | `archives-unstable` | **Not recommended** — can be opt in | Discontinued unstable / buggy projects (may have known bugs / security issues) | `pool/archives-unstable/main/` |
 | `testing` | **Not recommended** — can be opt in | Upcoming / pre-release builds for early testing | `pool/testing/main/` |
 
-All suites use component `main` and archs `amd64 all`, signed with the same GPG key.
+All suites use component `main` and archs `amd64 arm64 all`, signed with the same GPG key.
 
 ## Structure
 ```
@@ -19,12 +19,17 @@ All suites use component `main` and archs `amd64 all`, signed with the same GPG 
 ├── index.html              # GitHub Pages entry point
 ├── .nojekyll               # bypass Jekyll so pool/ is served
 ├── dists/
-│   ├── stable/main/binary-amd64/            # Recommended
-│   │   ├── Release / InRelease / Release.gpg
+│   ├── stable/main/binary-amd64/            # Recommended (amd64)
 │   │   ├── Packages (+ .gz)
-│   ├── archives-stable/main/binary-amd64/   # Optional — discontinued stable
-│   ├── archives-unstable/main/binary-amd64/ # Not recommended — buggy
-│   └── testing/main/binary-amd64/           # Not recommended — upcoming
+│   ├── stable/main/binary-arm64/            # Recommended (arm64)
+│   │   ├── Packages (+ .gz)
+│   ├── stable/Release / InRelease / Release.gpg (covers amd64 arm64 all)
+│   ├── archives-stable/main/binary-amd64/   # Optional — discontinued stable (amd64)
+│   ├── archives-stable/main/binary-arm64/   # Optional — discontinued stable (arm64)
+│   ├── archives-unstable/main/binary-amd64/ # Not recommended — buggy (amd64)
+│   ├── archives-unstable/main/binary-arm64/ # Not recommended — buggy (arm64)
+│   ├── testing/main/binary-amd64/           # Not recommended — upcoming (amd64)
+│   └── testing/main/binary-arm64/           # Not recommended — upcoming (arm64)
 ├── pool/
 │   ├── main/<letter>/<pkg>/*.deb                         # stable
 │   ├── archives-stable/main/<letter>/<pkg>/*.deb         # archives-stable
@@ -87,12 +92,15 @@ You can enable multiple suites at once by adding multiple `.list` files.
    # regenerates Packages / Packages.gz / Release / InRelease / Release.gpg for ALL suites
    # also regenerates HTML indexes (root + per-letter pool pages + dists/)
    ```
-   Manual alternative (Debian with dpkg-dev, stable only):
-   ```bash
-   dpkg-scanpackages --multiversion pool/main /dev/null > dists/stable/main/binary-amd64/Packages
-   gzip -k -f dists/stable/main/binary-amd64/Packages
-   # then recreate dists/stable/Release hashes
-   ```
+    Manual alternative (Debian with dpkg-dev, stable only):
+    ```bash
+    dpkg-scanpackages --multiversion pool/main /dev/null > dists/stable/main/binary-amd64/Packages
+    gzip -k -f dists/stable/main/binary-amd64/Packages
+    # arm64 (filter by Architecture):
+    dpkg-scanpackages --multiversion --arch arm64 pool/main /dev/null > dists/stable/main/binary-arm64/Packages
+    gzip -k -f dists/stable/main/binary-arm64/Packages
+    # then recreate dists/stable/Release hashes for both arches (amd64 arm64 all)
+    ```
 3. Commit & push to `main`. Enable GitHub Pages: Settings → Pages → Source: `main` branch, `/ (root)`.
 
 ## GitHub Pages setup
