@@ -6,19 +6,19 @@ Version: 1.0
 Architectures: amd64 arm64 all
 Components: main
 Description: Stable - recommended, actively maintained
-Date: Wed, 23 Sep 2026 14:28:13 UTC
+Date: Mon, 12 Oct 2026 17:15:27 UTC
 MD5Sum:
- f194c28554bb6483c612146fca36ebd4 1897 main/binary-amd64/Packages
- e575c3de18490e096531905a084f6f91 856 main/binary-amd64/Packages.gz
+ 0ee5eb38c9f4547edc448ca5edad8437 1883 main/binary-amd64/Packages
+ 176d68af03f3887172dfdf6b67d9333c 850 main/binary-amd64/Packages.gz
  40141de466e7a7896a2935c66fd4faed 1092 main/binary-arm64/Packages
- 21accc82f79a76accdb3f2ab2c63fb6d 544 main/binary-arm64/Packages.gz
+ b41d99fe8673bd6c24c71da8f7c7679c 544 main/binary-arm64/Packages.gz
 SHA1:
- 55444a153b4b2762e570a49c7b987b99b3937674 1897 main/binary-amd64/Packages
- 75db1a5049badef4729aa1e3c5b5636bcac0b285 856 main/binary-amd64/Packages.gz
+ 40b3eeaa03d2a8c77039556465fd2813f2bfeb53 1883 main/binary-amd64/Packages
+ 92eb8bf8244ae39481c8ddf442e8302fb73f580a 850 main/binary-amd64/Packages.gz
  8ff64cf1cc3a978d3d3d2a800379a59eb6d6f514 1092 main/binary-arm64/Packages
- b40ef4cfa58af830c9d7364f3ed71598c4226f6c 544 main/binary-arm64/Packages.gz
+ 8c10de4cbadaec4f6a75c5d42253080a912b90ac 544 main/binary-arm64/Packages.gz
 SHA256:
- bd5777d04316066c23ebee15742a2f0234d02da5879997f749ee6e3fd8ea0189 1897 main/binary-amd64/Packages
- 7d6e133e813c512f318229de6df87f52d012f31615faf730bc8cd23a75f6727f 856 main/binary-amd64/Packages.gz
+ 6471ec0224838952e729486d232b74bc08bde78f1dd2b3de8b26dd74dfc1b0ab 1883 main/binary-amd64/Packages
+ e13fef21b3b9ab98c65d8ef0e4b7dd60bb0f60b08756fa7a98d3ac900dffa685 850 main/binary-amd64/Packages.gz
  91c0d31b2c5a0a136243fdda78f55a75497515ea45b2643faf8040b7499b8ea4 1092 main/binary-arm64/Packages
- 6ffb1eedf8fb98d2138e8c9f2af4deeebd804572d0ba3b892814594070478c32 544 main/binary-arm64/Packages.gz
+ f318d4140381c5a4b289c9542797c624a4e9bef809f7db6030aaeb9e5b50efa5 544 main/binary-arm64/Packages.gz

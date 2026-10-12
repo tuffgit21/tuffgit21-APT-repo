@@ -20,15 +20,14 @@
         <p><a href="../../../../index.html" style="color:white; text-decoration: underline;">&larr; Back to repository index</a></p>
     </header>
     <div class="container">
-        
+        <div class="search-box"><input type="search" id="pkgSearch" placeholder="Filter..." aria-label="Filter"><span class="count" id="pkgCount"></span><button class="badge" id="pkgClear" type="button" style="cursor:pointer;">Clear</button></div>
         <div class="table-wrap"><table class="index" id="pkgTable">
             <thead><tr><th>Name</th><th>Last modified</th><th class="size">Size</th><th>Description</th></tr></thead>
             <tbody>
                 <tr><td><span class="icon">⬆️</span><a href="../index.html">Parent Directory</a></td><td>-</td><td class="size">-</td><td></td></tr>
-
+                <tr><td><span class="icon">📁</span><a href="debappbuilder/">debappbuilder/</a></td><td>2026-10-12 20:15</td><td class="size">-</td><td>1 package</td></tr>
             </tbody>
         </table></div>
-        <p class="muted"><em>empty</em></p>
         <p id="pkgNoResults" class="muted" style="display:none; text-align:center; padding:0.75rem; border:1px dashed var(--border); border-radius:6px; margin-top:0.5rem;">No packages found for "<span id="pkgQuery"></span>" — try another name, version, arch or file.</p>
     </div>
     <script>

@@ -6,19 +6,19 @@ Version: 1.0
 Architectures: amd64 arm64 all
 Components: main
 Description: Archives Unstable - discontinued unstable/buggy projects (Not recommended)
-Date: Wed, 23 Sep 2026 14:28:21 UTC
+Date: Mon, 12 Oct 2026 17:15:30 UTC
 MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 200ef3ce92a2d5f7deddfb2323c7e4a5 29 main/binary-amd64/Packages.gz
+ 6e59e80cc07857a9f59e576b76d01b59 29 main/binary-amd64/Packages.gz
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
- 200ef3ce92a2d5f7deddfb2323c7e4a5 29 main/binary-arm64/Packages.gz
+ 6e59e80cc07857a9f59e576b76d01b59 29 main/binary-arm64/Packages.gz
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- 6a308f4e47fe424e480052eafd410f2ec9df402f 29 main/binary-amd64/Packages.gz
+ 10669eaa2536ddfae53b6ff74c7f79b230a41ad3 29 main/binary-amd64/Packages.gz
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
- 6a308f4e47fe424e480052eafd410f2ec9df402f 29 main/binary-arm64/Packages.gz
+ 10669eaa2536ddfae53b6ff74c7f79b230a41ad3 29 main/binary-arm64/Packages.gz
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- acc6723793f58c2e3888cfc6436cf62467a63daf7473481be35618e44ca7725c 29 main/binary-amd64/Packages.gz
+ 6d41a1e8cf7adbedc684085afe4d7a077263536201fb7832c856a17b077c6a56 29 main/binary-amd64/Packages.gz
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
- acc6723793f58c2e3888cfc6436cf62467a63daf7473481be35618e44ca7725c 29 main/binary-arm64/Packages.gz
+ 6d41a1e8cf7adbedc684085afe4d7a077263536201fb7832c856a17b077c6a56 29 main/binary-arm64/Packages.gz
