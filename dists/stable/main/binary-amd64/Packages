@@ -4,7 +4,7 @@ Architecture: amd64
 Maintainer: tuffgit21 (Youssef)
 Depends: python3, python3-tk
 Description: Build .deb apps with ease!
-Filename: pool/main/d/debian-app-builder_3.0_amd64.deb
+Filename: pool/main/d/debappbuilder/debian-app-builder_3.0_amd64.deb
 Size: 842420
 MD5sum: c71830c0ced2625c0cf03e51ce5f99f4
 SHA256: e7be25a5836b5e815020d5307928f24cfb93b0276c5ed33f05a4ff75ace3d2cc
