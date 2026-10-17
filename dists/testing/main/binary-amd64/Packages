@@ -1,10 +1,10 @@
 Package: debian-app-builder
-Version: 3.1-dev-test.1
+Version: 3.1-dev-test.2
 Architecture: amd64
 Maintainer: tuffgit21 (Youssef)
 Depends: python3, python3-tk, dpkg-dev
 Description: Build .deb apps with ease!
-Filename: pool/testing/main/d/debappbuilder/debian-app-builder_3.1-dev-test.1_amd64.deb
-Size: 687188
-MD5sum: 705bb0331402c8f0b91055f54f6f5056
-SHA256: b2f9c8c8d12ecce1805cd5e7eb761e20fd4aa93cd5449cc557357c7a3ac70845
+Filename: pool/testing/main/d/debappbuilder/debian-app-builder_3.1-dev-test.2_amd64.deb
+Size: 686860
+MD5sum: 27c5c976954d8effdd0d6605580fe2b4
+SHA256: be738334bde9b2dfd9a07072fb50c77183e15276a658c2a320b768a025ca1c6e
