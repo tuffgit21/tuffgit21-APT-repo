@@ -292,6 +292,10 @@ details.section > summary {
   background: var(--table-head);
   border-bottom: 1px solid transparent;
 }
+details.section > summary h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 details.section[open] > summary {
   border-bottom-color: var(--border);
 }
@@ -471,6 +475,9 @@ table.index th.size {
   font-size: 0.85rem;
   color: var(--muted);
 }
+#warn {
+  padding: 0.75rem;
+}
 /* Mobile: tables scroll, header/search stack, larger tap targets */
 .table-wrap {
   overflow-x: auto;
@@ -494,7 +501,7 @@ table.index th.size {
     padding-right: 0;
   }
   .container {
-    padding: 1rem 0.85rem 2rem;
+    padding: 1rem 1rem 2rem;
   }
   h2 {
     font-size: 1.05rem;
@@ -528,6 +535,9 @@ table.index th.size {
     right: 0.6rem;
     font-size: 0.75rem;
     padding: 3px 8px;
+  }
+  .warnbtn {
+    width: min(100%, 12rem);
   }
 }
 @media (max-width: 400px) {
@@ -582,7 +592,4 @@ table.index th.size {
 }
 p code {
   border-radius: 5px;
-}
-#warn {
-  display: fixed;
 }
