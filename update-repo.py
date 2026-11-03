@@ -389,7 +389,10 @@ def update_html(all_infos):
             letter_dir = pool_main / letter
             letter_dir.mkdir(parents=True, exist_ok=True)
             html_path = letter_dir / f"{letter}.html"
-            apps = sorted([p for p in letter_dir.iterdir() if p.is_dir()], key=lambda p: p.name.lower())
+            apps = sorted(
+                [p for p in letter_dir.iterdir() if p.is_dir() and any(p.glob("*.deb"))],
+                key=lambda p: p.name.lower(),
+            )
             rows = []
             for app in apps:
                 mtime = _fmt_date(app.stat().st_mtime)
@@ -496,6 +499,13 @@ def update_html(all_infos):
             for app in [p for p in letter_dir.iterdir() if p.is_dir()]:
                 debs = sorted(app.glob("*.deb"))
                 if not debs:
+                    stale_index = app / "index.html"
+                    if stale_index.exists():
+                        stale_index.unlink()
+                    try:
+                        app.rmdir()
+                    except OSError:
+                        pass
                     continue
                 a_rows = []
                 for deb in debs:

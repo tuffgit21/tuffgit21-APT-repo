@@ -6,19 +6,19 @@ Version: 1.0
 Architectures: amd64 arm64 all
 Components: main
 Description: Archives Stable - discontinued stable projects (Optional, opt-in)
-Date: Sat, 17 Oct 2026 15:23:40 UTC
+Date: Tue, 03 Nov 2026 15:36:43 UTC
 MD5Sum:
- d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- c8ebeba2af530eaa7d72685e3ed842ec 29 main/binary-amd64/Packages.gz
- d41d8cd98f00b204e9800998ecf8427e 0 main/binary-arm64/Packages
- c8ebeba2af530eaa7d72685e3ed842ec 29 main/binary-arm64/Packages.gz
+ 169103b3bb5ab3881bd961310ceb7cc9 1602 main/binary-amd64/Packages
+ 7544361a695da90248a75e953b10d157 736 main/binary-amd64/Packages.gz
+ 9b5fbc9cef5725b15a019077f5210492 1140 main/binary-arm64/Packages
+ 0337a9e22e2ed141ab2a19353150ed44 555 main/binary-arm64/Packages.gz
 SHA1:
- da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- aab7b89741870b52607d09d9f8026ddc61e35018 29 main/binary-amd64/Packages.gz
- da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-arm64/Packages
- aab7b89741870b52607d09d9f8026ddc61e35018 29 main/binary-arm64/Packages.gz
+ cc0e977197704d607538bdbf9c2780f56789490e 1602 main/binary-amd64/Packages
+ e372e34cde9b0ccd588e87f73570a7bf5c2454d6 736 main/binary-amd64/Packages.gz
+ 58e6b16da60f8689dd5656464ad97f32458fbb38 1140 main/binary-arm64/Packages
+ 981454b5c440b48ce77740970a6cc34c1926b0bb 555 main/binary-arm64/Packages.gz
 SHA256:
- e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- 62bd789e07b542b7eb603619abf3e8ae385f1ad7701df3f3c953847375639f6f 29 main/binary-amd64/Packages.gz
- e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-arm64/Packages
- 62bd789e07b542b7eb603619abf3e8ae385f1ad7701df3f3c953847375639f6f 29 main/binary-arm64/Packages.gz
+ 21a51914218dc31ca2a543860fb9bb272bedee206384dc32821cc07c7cc03870 1602 main/binary-amd64/Packages
+ 6b1aa7244ed276f7c634439ed77aa4550ce4d6f230f4dc0e37deeaca869eca17 736 main/binary-amd64/Packages.gz
+ 0d7da7212867a3ceac1ddd84834d986a4eb318611ce097f06bd6f80513ab511a 1140 main/binary-arm64/Packages
+ b0940b8b68896cf9ffc04d1b1c98160502844d5d2e702b267e106cec766f9ae8 555 main/binary-arm64/Packages.gz
